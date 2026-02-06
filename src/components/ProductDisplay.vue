@@ -16,7 +16,7 @@
     <div v-if="product" class="flex flex-col h-full">
       <!-- Image -->
       <div class="relative">
-        <img :src="activeImageUrl" :alt="activeImageAlt" class="w-full h-64 object-cover" />
+        <img :src="activeImageUrl" :alt="activeImageAlt" class="w-full aspect-square object-cover" />
       </div>
 
       <!-- Info -->
