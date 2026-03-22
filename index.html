@@ -17,9 +17,20 @@
 
       let lastTouchEnd = 0;
       document.addEventListener('touchend', function (event) {
+        // 排除所有的互動元素，確保它們的點擊不受影響
+        const target = event.target;
+        const isInteractive = target.tagName === 'BUTTON' || 
+                           target.tagName === 'A' || 
+                           target.tagName === 'INPUT' || 
+                           target.tagName === 'SELECT' ||
+                           target.closest('button') || // 確保按鈕內的圖示也能按
+                           target.closest('a');
+
+        if (isInteractive) return; // 如果是按鈕或連結，直接跳過攔截邏輯
+
         const now = (new Date()).getTime();
         if (now - lastTouchEnd <= 300) {
-          event.preventDefault(); // 攔截 300ms 內的第二次點擊
+          event.preventDefault(); // 只攔截純背景區域的連點放大
         }
         lastTouchEnd = now;
       }, false);
