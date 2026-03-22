@@ -3,9 +3,9 @@
   <article class="bg-white min-h-screen pb-32">
     <!-- Breadcrumbs -->
     <nav class="max-w-screen-md mx-auto px-6 pt-12 mb-16 text-[10px] tracking-[0.2em] uppercase text-gray-400 font-medium">
-      <button @click="$emit('close')" class="hover:text-bb-blue transition-colors">Home</button>
+      <router-link to="/" class="hover:text-bb-blue transition-colors">Home</router-link>
       <span class="mx-3">/</span>
-      <button @click="$emit('close')" class="hover:text-bb-blue transition-colors">Blog</button>
+      <router-link to="/#blog" class="hover:text-bb-blue transition-colors">Blog</router-link>
       <span class="mx-3">/</span>
       <span class="text-bb-text">{{ blogData.title }}</span>
     </nav>
@@ -47,9 +47,9 @@
 
       <!-- Footer Actions -->
       <footer class="mt-32 pt-12 border-t border-gray-100 flex justify-between items-center">
-        <button @click="$emit('close')" class="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 hover:text-bb-blue transition-colors">
+        <router-link to="/#blog" class="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 hover:text-bb-blue transition-colors">
           ← Back to List
-        </button>
+        </router-link>
         <div class="flex space-x-6">
           <a href="#" class="text-gray-400 hover:text-bb-blue"><span class="text-[10px] tracking-widest font-bold">SHARE</span></a>
         </div>
@@ -62,7 +62,6 @@
 import { computed } from 'vue';
 
 const props = defineProps({ slug: { type: String, required: true } });
-defineEmits(['close']);
 
 // 模擬 Blog 資料庫
 const blogs = {

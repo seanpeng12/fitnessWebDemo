@@ -3,6 +3,7 @@
   <div class="bg-white text-bb-text font-sans">
     <PageHeader />
     <main>
+      <!-- 移除 transition，直接由 router-view 渲染內容 -->
       <router-view></router-view>
     </main>
     <PageFooter />
@@ -20,8 +21,21 @@ import PageFooter from './components/PageFooter.vue';
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth scrolling for anchor links */
+/* Global Styles */
 html {
   scroll-behavior: smooth;
+  background-color: #00AEEF;
+  touch-action: manipulation;
 }
+body {
+  background-color: #ffffff;
+  color: #333333;
+  -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+}
+a, button {
+  touch-action: manipulation;
+}
+
+/* 移除之前的頁面過渡動畫 CSS */
 </style>

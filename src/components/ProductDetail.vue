@@ -1,16 +1,19 @@
 <!-- src/components/ProductDetail.vue -->
 <template>
-  <div v-if="loading" class="min-h-screen flex items-center justify-center bg-white">
-    <div class="animate-pulse text-bb-blue tracking-widest uppercase text-[10px]">Loading...</div>
-  </div>
+  <!-- Loading State with Fade -->
+  <transition name="fade">
+    <div v-if="loading" class="min-h-screen flex items-center justify-center bg-white absolute inset-0 z-40">
+      <div class="animate-pulse text-bb-blue tracking-widest uppercase text-[10px]">Loading...</div>
+    </div>
+  </transition>
 
-  <div v-else-if="product" class="bg-white min-h-screen pt-8">
+  <div v-if="product" class="bg-white min-h-screen pt-8 transition-opacity duration-1000">
     <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
       <!-- Breadcrumbs -->
       <nav class="mb-12 text-[10px] tracking-[0.1em] text-gray-400">
-        <button @click="$emit('close')" class="hover:text-bb-blue">HOME</button>
+        <router-link to="/" class="hover:text-bb-blue">HOME</router-link>
         <span class="mx-2">></span>
-        <button @click="$emit('close')" class="hover:text-bb-blue uppercase">COFFEE</button>
+        <router-link to="/#shop" class="hover:text-bb-blue uppercase">COFFEE</router-link>
         <span class="mx-2">></span>
         <span class="text-bb-text uppercase">{{ product.title }}</span>
       </nav>
@@ -19,11 +22,11 @@
       <div class="flex flex-col lg:flex-row gap-12 mb-24">
         <!-- Left: Swipeable Image Gallery -->
         <div class="lg:w-1/2">
-          <!-- Main Scroll Container -->
+          <!-- Main Scroll Container with Initial Fade-In -->
           <div 
             ref="scrollContainer"
             @scroll="handleScroll"
-            class="bg-[#F7F7F7] aspect-square flex overflow-x-auto snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing"
+            class="bg-[#F7F7F7] aspect-square flex overflow-x-auto snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing animate-fadeIn"
           >
             <div 
               v-for="(img, index) in product.images.edges" 
@@ -33,13 +36,13 @@
               <img 
                 :src="img.node.url" 
                 :alt="img.node.altText || product.title" 
-                class="w-full h-full object-contain mix-blend-multiply pointer-events-none" 
+                class="w-full h-full object-contain mix-blend-multiply pointer-events-none transition-opacity duration-700"
               />
             </div>
           </div>
 
-          <!-- Thumbnails (Indicator & Switcher) -->
-          <div v-if="product.images.edges.length > 1" class="grid grid-cols-6 gap-2 mt-4">
+          <!-- Thumbnails -->
+          <div v-if="product.images.edges.length > 1" class="grid grid-cols-6 gap-2 mt-4 opacity-0 animate-fadeIn delay-300">
             <div 
               v-for="(img, index) in product.images.edges" 
               :key="index"
@@ -52,10 +55,10 @@
           </div>
         </div>
 
-        <!-- Right: Order Info -->
-        <div class="lg:w-1/2">
+        <!-- Right: Order Info (with its own fade) -->
+        <div class="lg:w-1/2 opacity-0 animate-fadeIn delay-200">
           <p class="text-[10px] text-bb-blue tracking-widest font-bold mb-2 underline uppercase">オンライン限定</p>
-          <h1 class="text-2xl font-normal text-bb-text mb-4">【オンライン限定】お試しシングルオリジンセレクション</h1>
+          <h1 class="text-2xl font-normal text-bb-text mb-4">{{ product.title }}</h1>
           <p class="text-xl font-normal text-bb-text mb-8">¥2,592 <span class="text-xs text-gray-500">(税込)</span></p>
 
           <div class="mb-8">
@@ -81,7 +84,7 @@
         </div>
       </div>
 
-      <!-- CATEGORY SECTION (6 Blocks) -->
+      <!-- CATEGORY SECTION -->
       <section class="mb-32">
         <h2 class="text-sm font-bold tracking-widest text-center mb-12 uppercase">CATEGORY</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
@@ -128,9 +131,6 @@ const fullCategories = [
   { name: 'Online Exclusive', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=600' },
 ];
 
-/**
- * 處理滾動事件，更新當前縮圖索引
- */
 const handleScroll = () => {
   if (!scrollContainer.value) return;
   const { scrollLeft, clientWidth } = scrollContainer.value;
@@ -138,9 +138,6 @@ const handleScroll = () => {
   currentImageIndex.value = index;
 };
 
-/**
- * 點擊縮圖時，滾動到對應的圖片位置
- */
 const scrollToImage = (index) => {
   if (!scrollContainer.value) return;
   const clientWidth = scrollContainer.value.clientWidth;
@@ -160,7 +157,6 @@ const handleBuyNow = async () => {
 const initData = async () => {
   currentImageIndex.value = 0;
   await fetchProductByHandle(props.handle);
-  // 重置滾動位置
   if (scrollContainer.value) {
     scrollContainer.value.scrollLeft = 0;
   }
@@ -179,9 +175,25 @@ watch(() => props.handle, initData);
   scrollbar-width: none;
 }
 
-/* Snap scrolling smoothness */
 .snap-x {
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; /* 讓 iOS 滑動更順暢 */
+  -webkit-overflow-scrolling: touch;
 }
+
+/* Specific Animations */
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Transition for loading and image switch */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.5s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>
