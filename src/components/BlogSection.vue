@@ -5,7 +5,12 @@
       <h2 class="text-[10px] font-bold tracking-[0.4em] text-center mb-16 uppercase text-bb-text">BLOG</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
-        <div v-for="blog in blogs" :key="blog.slug" @click="$emit('select-blog', blog.slug)" class="group cursor-pointer">
+        <router-link 
+          v-for="blog in blogs" 
+          :key="blog.slug" 
+          :to="`/blogs/${blog.slug}`"
+          class="group cursor-pointer"
+        >
           <div class="aspect-[16/10] overflow-hidden bg-gray-100 mb-6">
             <img :src="blog.image" :alt="blog.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
@@ -13,7 +18,7 @@
           <h3 class="text-xs font-bold leading-relaxed text-bb-text group-hover:text-bb-blue transition-colors uppercase">
             {{ blog.title }}
           </h3>
-        </div>
+        </router-link>
       </div>
 
       <div class="text-center">
@@ -26,8 +31,6 @@
 </template>
 
 <script setup>
-defineEmits(['select-blog']);
-
 const blogs = [
   {
     slug: 'kanda-cafe',
