@@ -4,21 +4,40 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <meta name="theme-color" content="#00AEEF">
+    <title>Blue Bottle Style Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'bb-blue': '#00AEEF',
+              'bb-gray-light': '#F7F7F7',
+              'bb-text': '#333333',
+            },
+            fontFamily: {
+              sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+      html {
+        background-color: #00AEEF; /* 下拉時露出的底色 */
+      }
       body {
-        font-family: 'Barlow', sans-serif;
+        background-color: #ffffff; /* 內容區塊維持白色 */
+        color: #333333;
+        -webkit-font-smoothing: antialiased;
       }
-      .cta-glow {
-        box-shadow: 0 0 20px rgba(22, 163, 74, 0.6);
-        animation: pulse 2s infinite;
+      .bb-button {
+        transition: all 0.3s ease;
       }
-      @keyframes pulse {
-          0% { box-shadow: 0 0 20px rgba(22, 163, 74, 0.6); }
-          50% { box-shadow: 0 0 30px rgba(22, 163, 74, 0.9); }
-          100% { box-shadow: 0 0 20px rgba(22, 163, 74, 0.6); }
+      .bb-button:hover {
+        opacity: 0.8;
       }
     </style>
   </head>

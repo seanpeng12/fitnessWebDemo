@@ -1,24 +1,26 @@
 <!-- src/components/ShopSection.vue -->
 <template>
-  <section id="shop" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-[#DC2626]" style="font-family: 'Barlow Condensed', sans-serif;">SHOP OUR TOP PRODUCTS</h2>
-        <p class="mt-4 text-lg max-w-3xl mx-auto" style="font-family: 'Barlow', sans-serif;">High-quality gear and nutrition to supplement your fitness journey.</p>
+  <section id="shop" class="py-24 bg-white border-t border-gray-50">
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl font-light tracking-tight text-bb-text mb-4 uppercase">Coffee Collections</h2>
+          <p class="text-gray-500 font-light leading-relaxed">
+            From our signature blends to rare single-origin beans, find your perfect cup.
+          </p>
+        </div>
+        <a href="#" class="mt-6 md:mt-0 text-sm font-semibold tracking-widest uppercase border-b border-bb-text pb-1 hover:text-bb-blue hover:border-bb-blue transition-all">
+          View All
+        </a>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
-        <!-- Product 1 -->
-        <ProductDisplay product-handle="商品1" />
-        <!-- Product 2 -->
-        <ProductDisplay product-handle="商品2" />
-        <!-- Product 3 -->
-        <ProductDisplay product-handle="商品3" />
-        <!-- Product 4 -->
-        <ProductDisplay product-handle="商品4" />
-        <!-- Product 5 -->
-        <ProductDisplay product-handle="商品5" />
-        <!-- Product 6 -->
-        <ProductDisplay product-handle="商品6" />
+      
+      <!-- 請確保以下 handle 與您 Shopify 後台的 "URL and handle" 一致 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
+        <!-- 修正: 這裡改回您 Shopify 商店中實際存在的 handle -->
+        <ProductDisplay product-handle="商品1" @select="$emit('select-product', $event)" />
+        <ProductDisplay product-handle="商品2" @select="$emit('select-product', $event)" />
+        <ProductDisplay product-handle="商品3" @select="$emit('select-product', $event)" />
+        <ProductDisplay product-handle="商品4" @select="$emit('select-product', $event)" />
       </div>
     </div>
   </section>
@@ -26,4 +28,5 @@
 
 <script setup>
 import ProductDisplay from './ProductDisplay.vue';
+defineEmits(['select-product']);
 </script>

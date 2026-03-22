@@ -1,11 +1,38 @@
 <!-- src/components/HeroSection.vue -->
 <template>
-  <section class="relative h-screen flex items-center justify-center text-white text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');">
-    <div class="absolute inset-0 bg-black opacity-60"></div>
-    <div class="relative z-10 px-4">
-      <h2 class="text-5xl md:text-7xl font-bold" style="font-family: 'Barlow Condensed', sans-serif;">CRUSH YOUR FITNESS GOALS</h2>
-      <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto" style="font-family: 'Barlow', sans-serif;">Personalized workout plans, nutrition tracking, and a supportive community to help you unleash your full potential.</p>
-      <a href="#cta" class="mt-8 inline-block bg-[#16A34A] text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-green-700 transition-transform duration-300 transform hover:scale-105 cta-glow">Start Your Journey</a>
+  <section class="relative bg-[#F7F7F7] overflow-hidden">
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-12 py-24 lg:py-40 flex flex-col lg:flex-row items-center justify-between">
+      <!-- Text Content -->
+      <div class="lg:w-1/2 z-10 mb-12 lg:mb-0">
+        <h1 class="text-4xl md:text-6xl font-light tracking-tight text-bb-text mb-6 leading-tight">
+          A Better Coffee <br />
+          <span class="font-medium">Starts Here.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-500 font-light mb-12 max-w-lg leading-relaxed">
+          Delicious coffee, meticulously roasted and delivered fresh to your door. Experience the Blue Bottle standard in every cup.
+        </p>
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+          <a href="#shop" class="bb-button bg-bb-blue text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
+            Shop Coffee
+          </a>
+          <a href="#features" class="bb-button border border-bb-text text-bb-text px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
+            Learn More
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Image Placeholder -->
+      <div class="lg:w-1/2 relative">
+        <div class="bg-white p-4 shadow-sm">
+          <img 
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" 
+            alt="Blue Bottle Coffee" 
+            class="w-full h-auto grayscale-[0.2] contrast-[1.1]"
+          />
+        </div>
+        <!-- Decorative Blue Dot -->
+        <div class="absolute -bottom-6 -left-6 w-12 h-12 rounded-full bg-bb-blue hidden lg:block"></div>
+      </div>
     </div>
   </section>
 </template>
