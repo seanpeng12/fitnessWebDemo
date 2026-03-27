@@ -16,7 +16,7 @@
             <svg class="w-6 h-8 text-bb-blue transition-transform group-hover:scale-105" viewBox="0 0 40 50" fill="currentColor">
               <path d="M20 0C25 0 30 5 30 15C30 25 25 35 20 50C15 35 10 25 10 15C10 5 15 0 20 0Z" />
             </svg>
-            <span class="text-base sm:text-lg font-medium tracking-tighter text-bb-text whitespace-nowrap uppercase">BLUE BOTTLE STYLE</span>
+            <span class="text-base sm:text-lg font-medium tracking-tighter text-bb-text whitespace-nowrap uppercase">Trinity Coffee Roaster</span>
           </router-link>
         </div>
 

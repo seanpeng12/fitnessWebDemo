@@ -9,7 +9,7 @@
             <svg class="w-6 h-8 text-bb-blue" viewBox="0 0 40 50" fill="currentColor">
               <path d="M20 0C25 0 30 5 30 15C30 25 25 35 20 50C15 35 10 25 10 15C10 5 15 0 20 0Z" />
             </svg>
-            <span class="text-lg font-medium tracking-tighter text-bb-text">BLUE BOTTLE STYLE</span>
+            <span class="text-lg font-medium tracking-tighter text-bb-text">Trinity Coffee Roaster</span>
           </div>
           <p class="text-xs text-gray-400 leading-relaxed max-w-xs uppercase tracking-widest font-light">
             Bringing you the finest coffee, roasted to perfection and delivered fresh.
