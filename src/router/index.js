@@ -20,7 +20,7 @@ const routes = [
     component: () => import('../components/BlogDetail.vue'),
     props: true
   },
-  // 捕捉所有未定義的路徑並導回首頁
+  // Catch all undefined paths and redirect to home
   {
     path: '/:pathMatch(.*)*',
     redirect: '/'
@@ -28,7 +28,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  // 改用 HashHistory 確保在任何環境（包含直接點擊 index.html）都能正確初始化
+  // Use HashHistory to ensure correct initialization in any environment (including direct index.html access)
   history: createWebHashHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {

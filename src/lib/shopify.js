@@ -1,14 +1,14 @@
 // src/lib/shopify.js
 
 /**
- * 執行 Shopify Storefront API 的 GraphQL 請求
- * @param {string} query - GraphQL 查詢語句
- * @param {object} [variables={}] - 傳遞給查詢的變數
- * @returns {Promise<object>} - API 回應的 JSON 物件
- * @throws {Error} - 如果 API 回應狀態不為 200，則拋出錯誤
+ * Executes a GraphQL request to the Shopify Storefront API
+ * @param {string} query - GraphQL query string
+ * @param {object} [variables={}] - Variables passed to the query
+ * @returns {Promise<object>} - JSON object from the API response
+ * @throws {Error} - Throws error if API response status is not 200
  */
 export async function shopifyFetch(query, variables = {}) {
-  // 從 Vite 環境變數讀取 Shopify API 憑證
+  // Read Shopify API credentials from Vite environment variables
   const apiUrl = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN;
   const accessToken = import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 

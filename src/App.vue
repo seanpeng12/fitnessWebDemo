@@ -3,7 +3,7 @@
   <div class="bg-white text-bb-text font-sans">
     <PageHeader />
     <main>
-      <!-- 移除 transition，直接由 router-view 渲染內容 -->
+      <!-- Remove transition, render content directly via router-view -->
       <router-view></router-view>
     </main>
     <PageFooter />
@@ -37,5 +37,5 @@ a, button {
   touch-action: manipulation;
 }
 
-/* 移除之前的頁面過渡動畫 CSS */
+/* Remove previous page transition CSS */
 </style>

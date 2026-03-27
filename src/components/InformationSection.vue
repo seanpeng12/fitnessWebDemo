@@ -16,7 +16,7 @@
 
       <div class="text-center">
         <a href="#" class="inline-block bg-bb-blue text-white px-12 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-opacity-90 transition-all">
-          一覧を見る
+          VIEW ALL
         </a>
       </div>
     </div>

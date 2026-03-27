@@ -57,12 +57,12 @@
 
         <!-- Right: Order Info (with its own fade) -->
         <div class="lg:w-1/2 opacity-0 animate-fadeIn delay-200">
-          <p class="text-[10px] text-bb-blue tracking-widest font-bold mb-2 underline uppercase">オンライン限定</p>
+          <p class="text-[10px] text-bb-blue tracking-widest font-bold mb-2 underline uppercase">ONLINE EXCLUSIVE</p>
           <h1 class="text-2xl font-normal text-bb-text mb-4">{{ product.title }}</h1>
-          <p class="text-xl font-normal text-bb-text mb-8">¥2,592 <span class="text-xs text-gray-500">(税込)</span></p>
+          <p class="text-xl font-normal text-bb-text mb-8">¥2,592 <span class="text-xs text-gray-500">(incl. tax)</span></p>
 
           <div class="mb-8">
-            <label class="block text-[10px] font-bold tracking-widest text-gray-400 mb-2 uppercase">數量</label>
+            <label class="block text-[10px] font-bold tracking-widest text-gray-400 mb-2 uppercase">QUANTITY</label>
             <div class="flex items-center border border-gray-200 w-32">
               <button @click="quantity > 1 && quantity--" class="px-4 py-2 border-r border-gray-200">-</button>
               <input type="text" v-model="quantity" class="w-full text-center text-sm focus:outline-none" />
@@ -74,12 +74,12 @@
             @click="handleBuyNow"
             class="w-full bg-bb-blue text-white py-4 text-xs font-bold tracking-[0.2em] hover:bg-opacity-90 transition-all mb-8 uppercase"
           >
-            カートに入れる
+            ADD TO CART
           </button>
 
           <div class="text-[13px] text-gray-600 leading-relaxed space-y-4 font-light">
-            <p>初めてブルーボトルコーヒーを体験する方に、おすすめのセットです。人気のシングルオリジン3種をセットにしました。</p>
-            <p>世界各地から嚴選されたコーヒー豆は、自社工場で丁寧に焙煎され、ひとつひとつ手作業で袋詰めしてお届けします。</p>
+            <p>A recommended set for those experiencing Blue Bottle Coffee for the first time. Includes three popular single-origin varieties.</p>
+            <p>Carefully selected coffee beans from around the world are roasted in our own factory and hand-packed one by one for delivery.</p>
           </div>
         </div>
       </div>

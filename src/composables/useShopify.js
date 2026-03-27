@@ -3,7 +3,7 @@
 import { ref } from 'vue';
 import { shopifyFetch } from '../lib/shopify';
 
-// --- GraphQL 查詢語句 ---
+// --- GraphQL Query Statements ---
 
 const GET_PRODUCT_BY_HANDLE_QUERY = `
   query getProductByHandle($handle: String!) {
@@ -62,8 +62,8 @@ export function useShopify() {
   const error = ref(null);
 
   /**
-   * 根據 handle 獲取單一商品資料
-   * @param {string} handle - 商品的 handle
+   * Fetches single product data by handle
+   * @param {string} handle - The product handle
    */
   const fetchProductByHandle = async (handle) => {
     loading.value = true;
@@ -83,10 +83,10 @@ export function useShopify() {
   };
   
   /**
-   * 建立一個 Shopify 購物車並返回結帳頁面 URL
-   * @param {string} variantId - 要購買的商品規格 ID (merchandiseId)
-   * @param {number} quantity - 購買數量
-   * @returns {Promise<string|null>} - 結帳頁面 URL，如果失敗則返回 null
+   * Creates a Shopify cart and returns the checkout URL
+   * @param {string} variantId - The product variant ID (merchandiseId)
+   * @param {number} quantity - Purchase quantity
+   * @returns {Promise<string|null>} - Checkout URL, or null if failed
    */
   const createCart = async (variantId, quantity) => {
     loading.value = true;

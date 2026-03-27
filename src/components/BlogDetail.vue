@@ -29,10 +29,10 @@
 
       <div class="prose prose-sm max-w-none text-gray-600 font-light leading-loose space-y-8 uppercase tracking-widest text-[11px]">
         <p>
-          春の訪れとともに、新しい季節の始まりを感じるこの頃。ブルーボトルコーヒーでは、季節の移ろいを感じていただけるような特別な体験をご用意しています。
+          With the arrival of spring, we feel the beginning of a new season. At Blue Bottle Coffee, we offer special experiences that allow you to feel the changing of the seasons.
         </p>
         <p>
-          今回のブログでは、新しくオープンしたカフェのこだわりや、ご自宅でのコーヒータイムをより豊かにするヒント、そして私たちが大切にしているクラフトマンシップについてお届けします。
+          In this blog post, we share the unique features of our newly opened cafe, tips to enrich your coffee time at home, and the craftsmanship we value.
         </p>
         
         <div class="py-12">
@@ -41,7 +41,7 @@
         </div>
 
         <p>
-          私たちのコーヒーは、産地からカフェまで、関わるすべての人の情熱によって形作られています。一杯のコーヒーが、あなたの日常に小さな変化と喜びをもたらすことを願っています。
+          Our coffee is shaped by the passion of everyone involved, from the source to the cafe. We hope a cup of coffee brings small changes and joy to your daily life.
         </p>
       </div>
 
@@ -63,7 +63,7 @@ import { computed } from 'vue';
 
 const props = defineProps({ slug: { type: String, required: true } });
 
-// 模擬 Blog 資料庫
+// Mock Blog Database
 const blogs = {
   'kanda-cafe': {
     title: 'BLUE BOTTLE COFFEE KANDA CAFE',

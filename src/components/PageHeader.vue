@@ -3,7 +3,7 @@
   <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
     <!-- Top Blue Bar -->
     <div class="bg-[#00AEEF] text-white text-[9px] tracking-[0.2em] py-2 px-6 text-center font-bold uppercase">
-      測試頁面2026.03.22
+      NEW PAGE 2026.03.27 LAUNCH
     </div>
     
     <!-- Main Header -->
@@ -30,11 +30,11 @@
         <div class="flex items-center justify-end space-x-4 sm:space-x-6 text-bb-text">
           <button class="flex flex-col items-center space-y-1 group">
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">検索</span>
+            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">SEARCH</span>
           </button>
           <button class="flex flex-col items-center space-y-1 group relative">
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">カート</span>
+            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">CART</span>
           </button>
 
           <!-- Mobile Menu Button -->

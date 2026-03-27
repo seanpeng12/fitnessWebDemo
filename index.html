@@ -8,7 +8,7 @@
     <title>Blue Bottle Style Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      // 徹底解決 iOS 連點放大問題的 JS 補丁
+      // JS patch to completely resolve iOS double-tap zoom issues
       document.addEventListener('touchstart', function (event) {
         if (event.touches.length > 1) {
           event.preventDefault();
@@ -17,20 +17,20 @@
 
       let lastTouchEnd = 0;
       document.addEventListener('touchend', function (event) {
-        // 排除所有的互動元素，確保它們的點擊不受影響
+        // Exclude all interactive elements to ensure their clicks are not affected
         const target = event.target;
         const isInteractive = target.tagName === 'BUTTON' || 
                            target.tagName === 'A' || 
                            target.tagName === 'INPUT' || 
                            target.tagName === 'SELECT' ||
-                           target.closest('button') || // 確保按鈕內的圖示也能按
+                           target.closest('button') || // Ensure icons inside buttons are also clickable
                            target.closest('a');
 
-        if (isInteractive) return; // 如果是按鈕或連結，直接跳過攔截邏輯
+        if (isInteractive) return; // Skip interception logic if it's a button or link
 
         const now = (new Date()).getTime();
         if (now - lastTouchEnd <= 300) {
-          event.preventDefault(); // 只攔截純背景區域的連點放大
+          event.preventDefault(); // Only intercept double-tap zoom on pure background areas
         }
         lastTouchEnd = now;
       }, false);
@@ -54,16 +54,16 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
       html {
-        background-color: #00AEEF; /* 下拉時露出的底色 */
-        touch-action: manipulation; /* 停用連點兩下放大，移除點擊延遲 */
+        background-color: #00AEEF; /* Background color shown when pulling down */
+        touch-action: manipulation; /* Disable double-tap zoom, remove click delay */
       }
       body {
-        background-color: #ffffff; /* 內容區塊維持白色 */
+        background-color: #ffffff; /* Maintain white background for content area */
         color: #333333;
         -webkit-font-smoothing: antialiased;
         touch-action: manipulation;
       }
-      /* 針對按鈕與連結強化反應速度 */
+      /* Enhance response speed for buttons and links */
       a, button {
         touch-action: manipulation;
       }

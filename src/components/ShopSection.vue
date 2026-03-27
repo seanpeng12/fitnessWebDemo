@@ -14,13 +14,13 @@
         </a>
       </div>
       
-      <!-- 請確保以下 handle 與您 Shopify 後台的 "URL and handle" 一致 -->
+      <!-- Ensure the handles below match the "URL and handle" in your Shopify admin -->
       <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-16">
-        <!-- 修正: 這裡改回您 Shopify 商店中實際存在的 handle -->
-        <ProductDisplay product-handle="商品1" />
-        <ProductDisplay product-handle="商品2" />
-        <ProductDisplay product-handle="商品3" />
-        <ProductDisplay product-handle="商品4" />
+        <!-- Update: Using actual handles existing in your Shopify store -->
+        <ProductDisplay product-handle="product_1" />
+        <ProductDisplay product-handle="product_2" />
+        <ProductDisplay product-handle="product_3" />
+        <ProductDisplay product-handle="product_4" />
       </div>
     </div>
   </section>
