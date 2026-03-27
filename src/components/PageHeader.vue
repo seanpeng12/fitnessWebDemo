@@ -3,7 +3,7 @@
   <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
     <!-- Top Blue Bar -->
     <div class="bg-[#00AEEF] text-white text-[9px] tracking-[0.2em] py-2 px-6 text-center font-bold uppercase">
-      NEW PAGE 2026.03.27 LAUNCH
+      NEW PAGE 2026.03.27 LAUNCH v2
     </div>
     
     <!-- Main Header -->

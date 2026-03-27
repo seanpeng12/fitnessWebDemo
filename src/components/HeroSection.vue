@@ -5,11 +5,11 @@
       <!-- Text Content -->
       <div class="lg:w-1/2 z-10 mb-12 lg:mb-0">
         <h1 class="text-4xl md:text-6xl font-light tracking-tight text-bb-text mb-6 leading-tight">
-          A Better Coffee <br />
-          <span class="font-medium">Starts Here.</span>
+          <!-- Trinity Coffee Roaster <br /> -->
+          <span class="font-medium">Trinity Coffee Roaster</span>
         </h1>
         <p class="text-lg md:text-xl text-gray-500 font-light mb-12 max-w-lg leading-relaxed">
-          Delicious coffee, meticulously roasted and delivered fresh to your door. Experience the Blue Bottle standard in every cup.
+          Origin, Roast, Brew
         </p>
         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
           <a href="#shop" class="bb-button bg-bb-blue text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
