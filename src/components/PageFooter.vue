@@ -48,7 +48,7 @@
 
       <!-- Bottom -->
       <div class="border-t border-gray-100 pt-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.2em] text-gray-400 uppercase font-light">
-        <p>© 2026 Trinity Coffee Roaster Inc.</p>
+        <p>© 2026 奧多伴有限公司</p>
         <div class="flex space-x-8 mt-6 md:mt-0">
           <a href="#" class="hover:text-bb-blue transition-colors">Privacy Policy</a>
           <a href="#" class="hover:text-bb-blue transition-colors">Terms of Service</a>
