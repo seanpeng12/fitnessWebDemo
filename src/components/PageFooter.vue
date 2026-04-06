@@ -1,14 +1,12 @@
 <!-- src/components/PageFooter.vue -->
 <template>
-  <footer class="bg-white border-t border-gray-100 pt-24 pb-12 px-6 lg:px-12 mt-20">
+  <footer class="bg-white border-t border-[#E8E3DE] pt-24 pb-12 px-6 lg:px-12 mt-20">
     <div class="max-w-screen-2xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
         <!-- Brand -->
         <div class="lg:col-span-2">
           <div class="flex items-center space-x-2 mb-8">
-            <svg class="w-6 h-8 text-bb-blue" viewBox="0 0 40 50" fill="currentColor">
-              <path d="M20 0C25 0 30 5 30 15C30 25 25 35 20 50C15 35 10 25 10 15C10 5 15 0 20 0Z" />
-            </svg>
+            <img src="/logo.png" alt="Trinity Coffee Roaster" class="w-6 h-8 object-contain transition-transform group-hover:scale-105">
             <span class="text-lg font-medium tracking-tighter text-bb-text">Trinity Coffee Roaster</span>
           </div>
           <p class="text-xs text-gray-400 leading-relaxed max-w-xs uppercase tracking-widest font-light">
@@ -47,7 +45,7 @@
       </div>
 
       <!-- Bottom -->
-      <div class="border-t border-gray-100 pt-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.2em] text-gray-400 uppercase font-light">
+      <div class="border-t border-[#E8E3DE] pt-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.2em] text-gray-400 uppercase font-light">
         <p>© 2026 奧多伴有限公司. 版權所有.</p>
         <div class="flex space-x-8 mt-6 md:mt-0">
           <a href="#" class="hover:text-bb-blue transition-colors">Privacy Policy</a>

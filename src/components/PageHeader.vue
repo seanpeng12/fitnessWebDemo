@@ -1,9 +1,9 @@
 <!-- src/components/PageHeader.vue -->
 <template>
-  <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+  <header class="sticky top-0 z-50 bg-white border-b border-[#E8E3DE]">
     <!-- Top Blue Bar -->
-    <div class="bg-[#00AEEF] text-white text-[9px] tracking-[0.2em] py-2 px-6 text-center font-bold uppercase">
-      NEW PAGE 2026.03.27 LAUNCH v2
+    <div class="bg-[#3A3A3A] text-white text-[9px] tracking-[0.2em] py-2 px-6 text-center font-bold uppercase">
+      A 2026-04-07 VERSION
     </div>
     
     <!-- Main Header -->
@@ -13,9 +13,7 @@
         <!-- Left: Logo (Simple Router Link) -->
         <div class="flex items-center justify-start">
           <router-link to="/" class="flex items-center space-x-2 group">
-            <svg class="w-6 h-8 text-bb-blue transition-transform group-hover:scale-105" viewBox="0 0 40 50" fill="currentColor">
-              <path d="M20 0C25 0 30 5 30 15C30 25 25 35 20 50C15 35 10 25 10 15C10 5 15 0 20 0Z" />
-            </svg>
+            <img src="/logo.png" alt="Trinity Coffee Roaster" class="w-6 h-8 object-contain transition-transform group-hover:scale-105">
             <span class="text-base sm:text-lg font-medium tracking-tighter text-bb-text whitespace-nowrap uppercase">Trinity Coffee Roaster</span>
           </router-link>
         </div>
@@ -60,7 +58,7 @@
           <router-link to="/#shop" @click="isMobileMenuOpen = false">SHOP</router-link>
           <router-link to="/#blog" @click="isMobileMenuOpen = false">OUR STORY</router-link>
           
-          <div class="pt-10 border-t border-gray-100 flex flex-col space-y-6">
+          <div class="pt-10 border-t border-[#E8E3DE] flex flex-col space-y-6">
             <a href="#" class="mobile-nav-item opacity-0 delay-100 text-xs font-bold tracking-widest">LOGIN</a>
             <a href="#" class="mobile-nav-item opacity-0 delay-200 text-xs font-bold tracking-widest">JOIN US</a>
           </div>

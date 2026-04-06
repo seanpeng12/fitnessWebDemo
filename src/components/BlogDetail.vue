@@ -46,7 +46,7 @@
       </div>
 
       <!-- Footer Actions -->
-      <footer class="mt-32 pt-12 border-t border-gray-100 flex justify-between items-center">
+      <footer class="mt-32 pt-12 border-t border-[#E8E3DE] flex justify-between items-center">
         <router-link to="/#blog" class="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 hover:text-bb-blue transition-colors">
           ← Back to List
         </router-link>

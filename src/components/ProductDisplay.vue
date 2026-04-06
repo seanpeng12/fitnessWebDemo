@@ -1,10 +1,10 @@
 <!-- src/components/ProductDisplay.vue -->
 <template>
-  <div class="group flex flex-col h-full bg-white transition-all duration-500">
+  <div class="group flex flex-col h-full bg-white border border-[#E8E3DE] hover:border-[#6B9A9B] transition-all duration-500 hover:shadow-md">
     <!-- Image Area (Link to Detail) -->
     <router-link 
       :to="`/products/${productHandle}`"
-      class="relative overflow-hidden bg-[#F7F7F7] aspect-[4/5] flex items-center justify-center p-8 mb-6 cursor-pointer"
+      class="relative overflow-hidden bg-[#F5F3F0] aspect-[4/5] flex items-center justify-center p-8 mb-6 cursor-pointer"
     >
       <img 
         v-if="product" 
@@ -16,28 +16,28 @@
       <div v-else class="text-gray-400 font-light italic text-[10px]">Product not found</div>
       
       <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-5 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-        <span class="bg-white text-bb-text px-8 py-3 text-[10px] font-bold tracking-widest uppercase shadow-sm border border-gray-100">
+        <span class="bg-[#6B9A9B] text-white px-8 py-3 text-[10px] font-bold tracking-widest uppercase shadow-sm hover:bg-[#9D8B7E] transition-colors">
           View Details
         </span>
       </div>
     </router-link>
 
     <!-- Info Area -->
-    <div v-if="product" class="flex flex-col flex-grow">
+    <div v-if="product" class="flex flex-col flex-grow px-4 pb-4">
       <router-link :to="`/products/${productHandle}`" class="mb-2">
-        <h3 class="text-sm font-normal tracking-tight text-bb-text group-hover:text-bb-blue transition-colors cursor-pointer uppercase">
+        <h3 class="text-sm font-normal tracking-tight text-bb-text group-hover:text-[#6B9A9B] transition-colors cursor-pointer uppercase">
           {{ product.title }}
         </h3>
       </router-link>
       
-      <p v-if="selectedVariant" class="text-xs font-medium text-gray-500 mb-4">
+      <p v-if="selectedVariant" class="text-xs font-medium text-[#9D8B7E] mb-4">
         {{ formatPrice(selectedVariant.price.amount, selectedVariant.price.currencyCode) }}
       </p>
 
       <!-- Buy Button -->
       <button 
         @click="handleBuyNow" 
-        class="mt-auto w-full border border-gray-100 py-3 text-[10px] font-bold tracking-widest uppercase hover:bg-bb-blue hover:text-white transition-all"
+        class="mt-auto w-full border-2 border-[#6B9A9B] py-3 text-[10px] font-bold tracking-widest uppercase hover:bg-[#6B9A9B] hover:text-white transition-all text-[#6B9A9B]"
       >
         Quick Purchase
       </button>

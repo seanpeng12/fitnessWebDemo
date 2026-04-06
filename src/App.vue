@@ -24,7 +24,7 @@ import PageFooter from './components/PageFooter.vue';
 /* Global Styles */
 html {
   scroll-behavior: smooth;
-  background-color: #00AEEF;
+  background-color: #3A3A3A;
   touch-action: manipulation;
 }
 body {
