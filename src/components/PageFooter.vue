@@ -7,7 +7,7 @@
         <div class="lg:col-span-2">
           <div class="flex items-center space-x-2 mb-8">
             <img src="/logo.png" alt="Trinity Coffee Roaster" class="w-6 h-8 object-contain transition-transform group-hover:scale-105">
-            <span class="text-lg font-medium tracking-tighter text-bb-text">Trinity Coffee Roaster</span>
+            <span class="text-lg font-medium tracking-tighter text-bb-text">Trinity Coffee Roaster LTD.</span>
           </div>
           <p class="text-xs text-gray-400 leading-relaxed max-w-xs uppercase tracking-widest font-light">
             Bringing you the finest coffee, roasted to perfection and delivered fresh.
