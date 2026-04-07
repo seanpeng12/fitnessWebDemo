@@ -9,7 +9,13 @@
           <span class="font-medium">Trinity Coffee Roaster</span>
         </h1>
         <p class="text-lg md:text-xl text-gray-500 font-light mb-12 max-w-lg leading-relaxed">
-          Origin, Roast, Brew
+          Three principles. One consistent cup.
+        </p>
+        <p class="text-lg md:text-xl text-gray-500 font-light mb-12 max-w-lg leading-relaxed">
+          Source · Craft · Consistency
+        </p>
+        <p class="text-lg md:text-xl text-gray-500 font-light mb-12 max-w-lg leading-relaxed">
+          Small-batch roasted coffee designed for cafe's - balanced, reliable and built to perform in every cup.
         </p>
         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
           <router-link :to="{ path: '/', hash: '#shop' }" class="bb-button bg-bb-blue text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
