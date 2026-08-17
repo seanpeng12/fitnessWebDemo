@@ -57,9 +57,10 @@
 
         <!-- Right: Order Info (with its own fade) -->
         <div class="lg:w-1/2 opacity-0 animate-fadeIn delay-200">
-          <p class="text-[10px] text-bb-blue tracking-widest font-bold mb-2 underline uppercase">ONLINE EXCLUSIVE</p>
           <h1 class="text-2xl font-normal text-bb-text mb-4">{{ product.title }}</h1>
-          <p class="text-xl font-normal text-bb-text mb-8">¥2,592 <span class="text-xs text-gray-500">(incl. tax)</span></p>
+          <p v-if="selectedVariant" class="text-xl font-normal text-bb-text mb-8">
+            {{ formatPrice(selectedVariant.price.amount, selectedVariant.price.currencyCode) }}
+          </p>
 
           <div class="mb-8">
             <label class="block text-[10px] font-bold tracking-widest text-gray-400 mb-2 uppercase">QUANTITY</label>
@@ -77,10 +78,11 @@
             ADD TO CART
           </button>
 
-          <div class="text-[13px] text-gray-600 leading-relaxed space-y-4 font-light">
-            <p>A recommended set for those experiencing Blue Bottle Coffee for the first time. Includes three popular single-origin varieties.</p>
-            <p>Carefully selected coffee beans from around the world are roasted in our own factory and hand-packed one by one for delivery.</p>
-          </div>
+          <div
+            v-if="product.descriptionHtml"
+            class="product-description text-[13px] text-gray-600 leading-relaxed font-light"
+            v-html="product.descriptionHtml"
+          ></div>
         </div>
       </div>
 
@@ -122,6 +124,15 @@ const scrollContainer = ref(null);
 const currentImageIndex = ref(0);
 const quantity = ref(1);
 
+const selectedVariant = computed(() => product.value?.variants.edges[0]?.node || null);
+
+const formatPrice = (amount, currencyCode) => {
+  return new Intl.NumberFormat('zh-TW', {
+    style: 'currency',
+    currency: currencyCode,
+  }).format(amount);
+};
+
 const fullCategories = [
   { name: 'Coffee', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600' },
   { name: 'Drinkware', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600' },
@@ -149,8 +160,8 @@ const scrollToImage = (index) => {
 };
 
 const handleBuyNow = async () => {
-  if (!product.value.variants.edges[0]) return;
-  const checkoutUrl = await createCart(product.value.variants.edges[0].node.id, quantity.value);
+  if (!selectedVariant.value) return;
+  const checkoutUrl = await createCart(selectedVariant.value.id, Number(quantity.value));
   if (checkoutUrl) window.location.href = checkoutUrl;
 };
 
@@ -196,4 +207,15 @@ watch(() => props.handle, initData);
 /* Transition for loading and image switch */
 .fade-enter-active, .fade-leave-active { transition: opacity 0.5s ease; }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
+
+.product-description :deep(p) {
+  margin-bottom: 1rem;
+}
+.product-description :deep(ul),
+.product-description :deep(ol) {
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+}
+.product-description :deep(ul) { list-style: disc; }
+.product-description :deep(ol) { list-style: decimal; }
 </style>

@@ -15,19 +15,30 @@
         </a>
       </div>
       
-      <!-- Ensure the handles below match the "URL and handle" in your Shopify admin -->
       <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-16">
-        <!-- Update: Using actual handles existing in your Shopify store -->
-        <ProductDisplay product-handle="product_1" />
-        <ProductDisplay product-handle="product_2" />
-        <ProductDisplay product-handle="product_3" />
-        <ProductDisplay product-handle="product_4" />
+        <ProductDisplay
+          v-for="product in products"
+          :key="product.id"
+          :product-handle="product.handle"
+          :product-data="product"
+        />
       </div>
+
+      <p v-if="loading" class="text-center text-sm text-[#9D8B7E]">Loading products...</p>
+      <p v-else-if="error" class="text-center text-sm text-red-600">{{ error }}</p>
+      <p v-else-if="products.length === 0" class="text-center text-sm text-[#9D8B7E]">No products available.</p>
     </div>
   </section>
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
 import ProductDisplay from './ProductDisplay.vue';
+import { useShopify } from '../composables/useShopify';
+
 defineEmits(['select-product']);
+
+const { products, loading, error, fetchAllProducts } = useShopify();
+
+onMounted(fetchAllProducts);
 </script>

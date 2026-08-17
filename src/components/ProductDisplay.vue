@@ -49,7 +49,10 @@
 import { ref, watch, onMounted, computed } from 'vue';
 import { useShopify } from '../composables/useShopify';
 
-const props = defineProps({ productHandle: { type: String, required: true } });
+const props = defineProps({
+  productHandle: { type: String, required: true },
+  productData: { type: Object, default: null },
+});
 const { product, loading, fetchProductByHandle, createCart } = useShopify();
 
 const selectedVariantId = ref(null);
@@ -70,7 +73,7 @@ const selectedVariant = computed(() => {
 });
 
 const formatPrice = (amount, currencyCode) => {
-  return new Intl.NumberFormat('ja-JP', { style: 'currency', currency: currencyCode }).format(amount);
+  return new Intl.NumberFormat('zh-TW', { style: 'currency', currency: currencyCode }).format(amount);
 };
 
 const handleBuyNow = async () => {
@@ -79,5 +82,11 @@ const handleBuyNow = async () => {
   if (checkoutUrl) window.location.href = checkoutUrl;
 };
 
-onMounted(() => fetchProductByHandle(props.productHandle));
+onMounted(() => {
+  if (props.productData) {
+    product.value = props.productData;
+  } else {
+    fetchProductByHandle(props.productHandle);
+  }
+});
 </script>
