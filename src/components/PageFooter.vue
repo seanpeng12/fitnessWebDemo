@@ -50,24 +50,28 @@
 
         <div>
           <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">Payments</h4>
-          <div class="flex items-center space-x-4 text-gray-400">
-            <!-- Visa -->
-            <a href="#" class="transition-opacity hover:opacity-80" title="Visa">
-              <img src="../../svg/visa.svg" alt="Visa" class="h-4 w-auto" />
-            </a>
-            <!-- Line Pay -->
-            <a href="#" class="transition-opacity hover:opacity-80" title="Line Pay">
-              <img src="../../svg/linePay.svg" alt="Line Pay" class="h-5 w-auto" />
-            </a>
-            <!-- Apple Pay -->
-            <a href="#" class="transition-opacity hover:opacity-80" title="Apple Pay">
-              <img src="../../svg/applePay.svg" alt="Apple Pay" class="h-5 w-auto" />
-            </a>
-            <!-- Jko Pay -->
-            <a href="#" class="transition-opacity hover:opacity-80" title="Jko Pay">
-              <img src="../../svg/jkopay.svg" alt="Jko Pay" class="h-5 w-auto" />
-            </a>
-          </div>
+          <ul class="space-y-4">
+            <li>
+              <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Visa">
+                <img src="../../svg/visa.svg" alt="Visa" class="h-5 w-auto object-contain" />
+              </a>
+            </li>
+            <li>
+              <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Line Pay">
+                <img src="../../svg/linePay.svg" alt="Line Pay" class="h-5 w-auto object-contain" />
+              </a>
+            </li>
+            <li>
+              <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Apple Pay">
+                <img src="../../svg/applePay.svg" alt="Apple Pay" class="h-5 w-auto object-contain" />
+              </a>
+            </li>
+            <li>
+              <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Jko Pay">
+                <img src="../../svg/jkopay.svg" alt="Jko Pay" class="h-5 w-auto object-contain" />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -75,9 +79,9 @@
       <div class="border-t border-[#E8E3DE] pt-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.2em] text-gray-400 uppercase font-light">
         <p>© 2026 奧多伴有限公司. 版權所有.</p>
         <div class="flex space-x-8 mt-6 md:mt-0">
-          <a href="#" class="hover:text-bb-blue transition-colors">Privacy Policy</a>
-          <a href="#" class="hover:text-bb-blue transition-colors">Terms of Service</a>
-          <a href="#" class="hover:text-bb-blue transition-colors">Accessibility</a>
+          <a href="#" class="hover:text-bb-blue transition-colors">隱私權政策</a>
+          <a href="#" class="hover:text-bb-blue transition-colors">服務條款</a>
+          <a href="#" class="hover:text-bb-blue transition-colors">無障礙聲明</a>
         </div>
       </div>
     </div>
