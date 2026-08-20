@@ -78,7 +78,8 @@
       <!-- Bottom -->
       <div class="border-t border-[#E8E3DE] pt-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.2em] text-gray-400 uppercase font-light">
         <p>© 2026 奧多伴有限公司. 版權所有.</p>
-        <div class="flex space-x-8 mt-6 md:mt-0">
+        <div class="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 md:mt-0">
+          <router-link to="/shopping-guide" class="hover:text-bb-blue transition-colors">購物須知</router-link>
           <a href="#" class="hover:text-bb-blue transition-colors">隱私權政策</a>
           <a href="#" class="hover:text-bb-blue transition-colors">服務條款</a>
           <a href="#" class="hover:text-bb-blue transition-colors">無障礙聲明</a>

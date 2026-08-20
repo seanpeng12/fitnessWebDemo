@@ -20,6 +20,11 @@ const routes = [
     component: () => import('../components/BlogDetail.vue'),
     props: true
   },
+  {
+    path: '/shopping-guide',
+    name: 'ShoppingGuide',
+    component: () => import('../views/ShoppingGuideView.vue')
+  },
   // Catch all undefined paths and redirect to home
   {
     path: '/:pathMatch(.*)*',
