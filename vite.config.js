@@ -5,7 +5,8 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/fitnessWebDemo/',
+  // Relative asset paths work on both the GitHub project URL and custom domain.
+  base: './',
   plugins: [
     vue(),
   ],
