@@ -1,7 +1,12 @@
 <template>
   <teleport to="body">
     <transition name="cart-fade">
-      <div v-if="isOpen" class="fixed inset-0 z-[90] bg-black/30" @click="isOpen = false"></div>
+      <div
+        v-if="isOpen"
+        class="fixed inset-0 z-[90]"
+        :class="checkingOut ? 'bg-[#F7F5F2]' : 'bg-black/30'"
+        @click="!checkingOut && (isOpen = false)"
+      ></div>
     </transition>
     <transition name="cart-slide">
       <aside
@@ -69,17 +74,6 @@
           </button>
         </footer>
       </aside>
-    </transition>
-    <transition name="cart-fade">
-      <div
-        v-if="checkingOut"
-        class="fixed inset-0 z-[120] flex flex-col items-center justify-center bg-[#F7F5F2] px-6 text-center"
-        role="status"
-        aria-live="polite"
-      >
-        <span class="h-10 w-10 animate-spin rounded-full border-[3px] border-[#D8CEC5] border-t-bb-blue" aria-hidden="true"></span>
-        <p class="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-bb-text">{{ t('auth.redirecting') }}</p>
-      </div>
     </transition>
   </teleport>
 </template>
