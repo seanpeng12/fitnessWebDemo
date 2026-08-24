@@ -21,9 +21,9 @@
           <router-link :to="{ path: '/', hash: '#shop' }" class="bb-button bg-bb-blue text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
             {{ t('hero.shop') }}
           </router-link>
-          <a href="#features" class="bb-button border border-bb-text text-bb-text px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
+          <router-link to="/story" class="bb-button border border-bb-text text-bb-text px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
             {{ t('hero.learnMore') }}
-          </a>
+          </router-link>
         </div>
       </div>
 
