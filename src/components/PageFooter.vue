@@ -91,23 +91,23 @@
 
         <div>
           <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.payments') }}</h4>
-          <ul class="grid grid-cols-4 gap-2 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            <li>
+          <ul class="payment-orbit">
+            <li class="payment-item payment-item--visa">
               <span class="payment-badge" title="Visa">
                 <img src="../../svg/visa.svg" alt="Visa" class="payment-logo" />
               </span>
             </li>
-            <li>
+            <li class="payment-item payment-item--line">
               <span class="payment-badge" title="Line Pay">
                 <img src="../../svg/linePay.svg" alt="Line Pay" class="payment-logo" />
               </span>
             </li>
-            <li>
+            <li class="payment-item payment-item--apple">
               <span class="payment-badge" title="Apple Pay">
                 <img src="../../svg/applePay.svg" alt="Apple Pay" class="payment-logo" />
               </span>
             </li>
-            <li>
+            <li class="payment-item payment-item--jko">
               <span class="payment-badge" title="Jko Pay">
                 <img src="../../svg/jkopay.svg" alt="Jko Pay" class="payment-logo" />
               </span>
@@ -135,25 +135,66 @@ const { t } = useI18n();
 </script>
 
 <style scoped>
+.payment-orbit {
+  position: relative;
+  width: min(100%, 15rem);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background-color: #f8f6f3;
+  background-image: radial-gradient(circle, rgba(107, 154, 155, 0.42) 1.25px, transparent 1.5px);
+  background-size: 11px 11px;
+}
+
+.payment-item {
+  position: absolute;
+  width: 44%;
+}
+
+.payment-item--visa {
+  top: 11%;
+  left: 3%;
+  transform: rotate(-4deg);
+}
+
+.payment-item--line {
+  top: 34%;
+  right: 2%;
+  transform: rotate(3deg);
+}
+
+.payment-item--apple {
+  bottom: 24%;
+  left: 5%;
+  transform: rotate(2deg);
+}
+
+.payment-item--jko {
+  right: 9%;
+  bottom: 7%;
+  transform: rotate(-5deg);
+}
+
 .payment-badge {
   display: flex;
   width: 100%;
-  height: 3rem;
+  height: 2.35rem;
   align-items: center;
   justify-content: center;
   border: 1px solid #e2dcd6;
-  background: #faf9f7;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 5px 14px rgba(90, 84, 80, 0.08);
 }
 
 .payment-logo {
-  width: 4rem;
-  height: 1.15rem;
+  width: 72%;
+  height: 1rem;
   object-fit: contain;
 }
 
 @media (max-width: 380px) {
-  .payment-logo {
-    width: 3.25rem;
+  .payment-orbit {
+    max-width: 13.5rem;
   }
 }
 </style>
