@@ -1,12 +1,14 @@
 <!-- src/components/HeroSection.vue -->
 <template>
   <section class="relative overflow-hidden bg-[#F7F7F7]">
+    <div class="mobile-hero-photo pointer-events-none absolute inset-0 lg:hidden" aria-hidden="true"></div>
+    <div class="mobile-hero-veil pointer-events-none absolute inset-0 lg:hidden" aria-hidden="true"></div>
     <div class="editorial-lines pointer-events-none absolute inset-0" aria-hidden="true"></div>
     <div class="pointer-events-none absolute left-[8%] top-0 hidden h-full w-px bg-[#BEB4AA]/25 lg:block" aria-hidden="true"></div>
     <div class="pointer-events-none absolute right-[7%] top-[18%] hidden h-px w-[36%] bg-[#BEB4AA]/35 lg:block" aria-hidden="true"></div>
     <div class="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-24 lg:py-40 flex flex-col lg:flex-row items-center justify-between">
       <!-- Text Content -->
-      <div class="lg:w-1/2 z-10 mb-12 lg:mb-0">
+      <div class="z-10 lg:mb-0 lg:w-1/2">
         <h1 class="text-4xl md:text-6xl font-light tracking-tight text-bb-text mb-6 leading-tight">
           <!-- Trinity Coffee Roaster <br /> -->
           <span class="font-medium">Trinity Coffee Roaster</span>
@@ -31,7 +33,7 @@
       </div>
 
       <!-- Editorial Hero Image -->
-      <div class="relative w-full lg:w-1/2 lg:pl-10">
+      <div class="relative hidden w-full lg:block lg:w-1/2 lg:pl-10">
         <div class="editorial-outline absolute -right-5 -top-5 hidden h-full w-[88%] border border-[#D8D0C8] lg:block"></div>
         <figure class="editorial-frame relative mx-auto w-full max-w-2xl bg-[#EFEAE4] p-3 sm:p-4">
           <div class="editorial-photo relative aspect-[5/4] overflow-hidden bg-[#DDD6CF]">
@@ -68,6 +70,22 @@ const { t } = useI18n();
     repeating-linear-gradient(0deg, rgba(126, 111, 98, 0.04) 0, rgba(126, 111, 98, 0.04) 1px, transparent 1px, transparent 96px);
   -webkit-mask-image: linear-gradient(to right, transparent, black 16%, black 84%, transparent);
   mask-image: linear-gradient(to right, transparent, black 16%, black 84%, transparent);
+}
+
+.mobile-hero-photo {
+  inset: -1.5rem;
+  background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop');
+  background-position: 58% center;
+  background-size: cover;
+  filter: blur(6px) saturate(0.55) contrast(0.9);
+  opacity: 0.5;
+  transform: scale(1.05);
+}
+
+.mobile-hero-veil {
+  background:
+    linear-gradient(180deg, rgba(247, 247, 247, 0.72) 0%, rgba(247, 247, 247, 0.58) 48%, rgba(247, 247, 247, 0.9) 100%),
+    linear-gradient(90deg, rgba(247, 247, 247, 0.42), transparent 75%);
 }
 
 .editorial-outline {
