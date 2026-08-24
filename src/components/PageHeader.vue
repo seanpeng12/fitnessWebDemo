@@ -26,7 +26,7 @@
         <!-- Center: Navigation -->
         <nav class="hidden lg:flex items-center justify-center space-x-12 text-[11px] font-bold tracking-[0.3em] text-bb-text uppercase">
           <router-link :to="{ path: '/', hash: '#shop' }" class="hover:text-bb-blue transition-colors">{{ t('header.shop') }}</router-link>
-          <router-link :to="{ path: '/', hash: '#blog' }" class="hover:text-bb-blue transition-colors">{{ t('header.story') }}</router-link>
+          <router-link to="/story" class="hover:text-bb-blue transition-colors">{{ t('header.story') }}</router-link>
         </nav>
 
         <!-- Right: Utility Icons -->
@@ -78,7 +78,7 @@
             <span>{{ t('header.search') }}</span>
           </button>
           <router-link to="/#shop" @click="isMobileMenuOpen = false">{{ t('header.shop') }}</router-link>
-          <router-link to="/#blog" @click="isMobileMenuOpen = false">{{ t('header.story') }}</router-link>
+          <router-link to="/story" @click="isMobileMenuOpen = false">{{ t('header.story') }}</router-link>
           
           <div class="pt-10 border-t border-[#E8E3DE] flex flex-col space-y-6">
             <button

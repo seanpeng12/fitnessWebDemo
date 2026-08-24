@@ -28,7 +28,7 @@
         <div>
           <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.explore') }}</h4>
           <ul class="space-y-4 text-[11px] font-light tracking-widest uppercase text-gray-500">
-            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.story') }}</a></li>
+            <li><router-link to="/story" class="hover:text-bb-blue transition-colors">{{ t('footer.story') }}</router-link></li>
             <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.cafes') }}</a></li>
             <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.sustainability') }}</a></li>
             <li><router-link to="/faq" class="hover:text-bb-blue transition-colors">{{ t('footer.help') }}</router-link></li>

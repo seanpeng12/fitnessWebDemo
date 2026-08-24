@@ -2,6 +2,26 @@ export default {
   common: { viewAll: 'View All', loading: 'Loading…' },
   header: { version: '2026 Promotion Now Available', shop: 'Shop', story: 'Our Story', search: 'Search', cart: 'Cart', openMenu: 'Open menu', closeMenu: 'Close menu', login: 'Log In', join: 'Join Us', language: 'Language' },
   hero: { tagline: 'Three principles. One consistent cup.', principles: 'Source · Craft · Consistency', description: 'Small-batch roasted coffee designed for cafés — balanced, reliable, and built to perform in every cup.', shop: 'Shop Coffee', learnMore: 'Learn More', imageAlt: 'Pour-over coffee and coffee beans' },
+  story: {
+    eyebrow: 'OUR STORY · SINCE 2026',
+    title: 'Making every cup\na bright part of the day',
+    lead: 'Trinity Coffee Roaster was founded in 2026 with a simple idea: coffee with clear character and dependable quality should feel at home in everyday life.',
+    paragraphs: [
+      'We believe a memorable cup begins with respect for origin and is shaped by attentive decisions throughout the roast. We learn the character of every green coffee, test each profile in small batches, and adjust heat and timing for the variety, process, and season. Our aim is not an exaggerated roast signature, but a balanced expression of sweetness, aroma, and clarity.',
+      'From sourcing and roasting to resting and dispatch, we approach every step with care. We record, cup, and refine our work so the coffee you enjoy today remains familiar and reliable the next time you brew it. Whether it is a quiet morning, an afternoon shared with friends, or a busy café service, Trinity hopes to be a choice you can trust.',
+      'We are still a young roastery, but we are committed to doing small things well with lasting patience. Through every freshly roasted bag, we hope to share the story of its origin, the warmth of the craft, and the simple pleasure a thoughtful cup of coffee can bring.',
+    ],
+    craftEyebrow: 'SMALL BATCH ROASTING',
+    craftTitle: 'Small batches, close attention',
+    craftCopy: 'We adapt each roast to the coffee in front of us, then cup for sweetness, acidity, and finish so the character of its origin can come through clearly.',
+    values: [
+      { number: '01', title: 'Source', copy: 'Respecting the variety, process, and terroir behind every coffee.' },
+      { number: '02', title: 'Craft', copy: 'Refining each profile through small-batch roasting and continual cupping.' },
+      { number: '03', title: 'Consistency', copy: 'Keeping traceable roast records for a dependable cup every time.' },
+    ],
+    imageAlt: { machine: 'Coffee roaster and cooling tray', beans: 'Freshly roasted coffee beans in a cooling tray', batch: 'Coffee beans during small-batch roasting' },
+    photoNote: 'Images depict the craft of coffee roasting',
+  },
   shop: { eyebrow: 'Collection', title: 'Coffee Collections', description: 'From our signature blends to rare single-origin beans, find your perfect cup.', loading: 'Loading products…', empty: 'No products available.', notFound: 'Product not found', details: 'View Details', quickPurchase: 'Quick Purchase' },
   product: {
     home: 'Home', coffee: 'Coffee', quantity: 'Quantity', addToCart: 'Add to Cart', soldOut: 'Sold Out', category: 'Category', event: 'Coffee Life Day', notFound: 'Product with handle “{handle}” was not found.',
