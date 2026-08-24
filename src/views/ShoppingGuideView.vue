@@ -10,7 +10,7 @@
       </header>
 
       <div class="space-y-4">
-        <details class="guide-card">
+        <details class="guide-card" open>
           <summary class="guide-title"><span>01</span>{{ t('guide.order.title') }}</summary>
           <ol class="guide-list list-decimal">
             <li v-for="item in tm('guide.order.items')" :key="item">{{ item }}</li>
