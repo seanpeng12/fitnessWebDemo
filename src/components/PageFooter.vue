@@ -76,7 +76,14 @@
               </div>
               <div>
                 <dt class="mb-1 font-medium text-bb-text">{{ t('footer.phoneLabel') }}</dt>
-                <dd><a href="tel:+886226918858" class="hover:text-bb-blue">02-2691-8858</a></dd>
+                <dd>
+                  <a href="tel:+886226918858" class="inline-flex items-center gap-2 hover:text-bb-blue">
+                    <svg class="h-4 w-4 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M7.5 3.75 5.25 6c0 7.04 5.71 12.75 12.75 12.75l2.25-2.25-4-3-2.25 2.25a10.1 10.1 0 0 1-5.75-5.75l2.25-2.25-3-4Z" />
+                    </svg>
+                    <span>02-2691-8858</span>
+                  </a>
+                </dd>
               </div>
             </dl>
           </div>
