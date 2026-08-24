@@ -3,7 +3,7 @@
     <transition name="cart-fade">
       <div
         v-if="isOpen"
-        class="fixed inset-0 z-[90]"
+        class="cart-viewport fixed inset-x-0 top-0 z-[90]"
         :class="checkingOut ? 'bg-[#F7F5F2]' : 'bg-black/30'"
         @click="!checkingOut && (isOpen = false)"
       ></div>
@@ -11,7 +11,7 @@
     <transition name="cart-slide">
       <aside
         v-if="isOpen"
-        class="fixed right-0 top-0 z-[100] h-full w-full bg-white shadow-2xl"
+        class="cart-viewport fixed right-0 top-0 z-[100] w-full overflow-hidden bg-white shadow-2xl"
         :class="checkingOut ? 'max-w-none' : 'max-w-md'"
         role="dialog"
         aria-modal="true"
@@ -82,7 +82,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useCart } from '../composables/useCart'
 
@@ -102,10 +102,39 @@ const remove = async (lineId) => {
 }
 const lineImage = (line) => line.merchandise.image || line.merchandise.product.featuredImage
 
+let previousBodyOverflow = ''
+let previousHtmlOverflow = ''
+let scrollLocked = false
+
+const lockBackground = () => {
+  if (scrollLocked) return
+  previousBodyOverflow = document.body.style.overflow
+  previousHtmlOverflow = document.documentElement.style.overflow
+  document.body.style.overflow = 'hidden'
+  document.documentElement.style.overflow = 'hidden'
+  scrollLocked = true
+}
+
+const unlockBackground = () => {
+  if (!scrollLocked) return
+  document.body.style.overflow = previousBodyOverflow
+  document.documentElement.style.overflow = previousHtmlOverflow
+  scrollLocked = false
+}
+
+watch(isOpen, (open) => { if (open) lockBackground(); else unlockBackground() })
+onBeforeUnmount(unlockBackground)
+
 onMounted(loadCart)
 </script>
 
 <style scoped>
+.cart-viewport {
+  height: 100vh;
+  height: 100dvh;
+  overscroll-behavior: none;
+}
+
 .cart-fade-enter-active, .cart-fade-leave-active { transition: opacity 0.25s ease; }
 .cart-fade-enter-from, .cart-fade-leave-to { opacity: 0; }
 .cart-slide-enter-active, .cart-slide-leave-active { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
