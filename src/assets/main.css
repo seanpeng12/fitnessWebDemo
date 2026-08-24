@@ -1,1 +1,25 @@
-/* Reset Tailwind's base styles to avoid conflicts with Play CDN */
+/* Desktop typography scale. Mobile sizing remains unchanged. */
+@media (min-width: 1024px) {
+  [class~="text-[8px]"] { font-size: 9px !important; }
+  [class~="text-[9px]"] { font-size: 10px !important; }
+  [class~="text-[10px]"] { font-size: 11px !important; }
+  [class~="text-[11px]"] { font-size: 12px !important; }
+  [class~="text-[12px]"] { font-size: 13px !important; }
+  [class~="text-[13px]"] { font-size: 14px !important; }
+  [class~="text-xs"] { font-size: 13px !important; }
+  [class~="text-sm"] { font-size: 16px !important; }
+  [class~="text-base"] { font-size: 18px !important; }
+  [class~="text-lg"] { font-size: 20px !important; }
+  [class~="text-xl"] { font-size: 22px !important; }
+  [class~="text-2xl"] { font-size: 27px !important; }
+  [class~="text-3xl"] { font-size: 34px !important; }
+  [class~="text-4xl"] { font-size: 40px !important; }
+  [class~="text-6xl"] { font-size: 66px !important; }
+
+  [class~="md:text-base"] { font-size: 18px !important; }
+  [class~="md:text-lg"] { font-size: 20px !important; }
+  [class~="md:text-xl"] { font-size: 22px !important; }
+  [class~="md:text-3xl"] { font-size: 34px !important; }
+  [class~="md:text-6xl"] { font-size: 66px !important; }
+  [class~="sm:text-4xl"] { font-size: 40px !important; }
+}

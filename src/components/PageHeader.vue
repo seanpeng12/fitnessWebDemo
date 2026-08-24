@@ -14,7 +14,7 @@
         <div class="flex min-w-0 items-center justify-start">
           <router-link to="/" class="group flex min-w-0 items-center gap-2">
             <img src="/logo.png" alt="Trinity Coffee Roaster" class="h-8 w-6 flex-none object-contain transition-transform group-hover:scale-105">
-            <span class="flex h-8 flex-col items-start justify-between text-[10px] font-semibold uppercase leading-[10px] tracking-[0.05em] text-bb-text sm:hidden" aria-hidden="true">
+            <span class="flex h-8 flex-col items-start justify-between text-[12px] font-semibold uppercase leading-[10px] tracking-[0.05em] text-bb-text sm:hidden" aria-hidden="true">
               <span>Trinity</span>
               <span>Coffee</span>
               <span>Roaster</span>
