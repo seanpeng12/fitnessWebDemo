@@ -139,6 +139,7 @@ const { t } = useI18n();
   position: relative;
   width: min(60%, 8.667rem);
   aspect-ratio: 1;
+  margin-inline: auto;
   border-radius: 9999px;
   background-color: #f8f6f3;
   background-image: radial-gradient(circle, rgba(107, 154, 155, 0.42) 1.25px, transparent 1.5px);
@@ -147,33 +148,33 @@ const { t } = useI18n();
 
 .payment-item {
   position: absolute;
-  width: 44%;
+  width: 5.5rem;
 }
 
 .payment-item--visa {
-  top: 11%;
-  left: 3%;
+  top: 16%;
+  left: -15%;
 }
 
 .payment-item--line {
-  top: 34%;
-  right: 2%;
+  top: 30%;
+  right: -22%;
 }
 
 .payment-item--apple {
-  bottom: 24%;
-  left: 5%;
+  bottom: 22%;
+  left: -20%;
 }
 
 .payment-item--jko {
-  right: 9%;
-  bottom: 7%;
+  right: -12%;
+  bottom: 6%;
 }
 
 .payment-badge {
   display: flex;
   width: 100%;
-  aspect-ratio: 2.4 / 1;
+  height: 2.35rem;
   align-items: center;
   justify-content: center;
   border: 1px solid #e2dcd6;
@@ -183,8 +184,8 @@ const { t } = useI18n();
 }
 
 .payment-logo {
-  width: 72%;
-  height: 42%;
+  width: 4rem;
+  height: 1rem;
   object-fit: contain;
 }
 
