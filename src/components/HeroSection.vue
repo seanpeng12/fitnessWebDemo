@@ -90,7 +90,7 @@ const { t } = useI18n();
 @media (max-width: 1023px) {
   .mobile-image-layout {
     align-self: flex-start;
-    width: calc(100% + 1.5rem);
+    width: 100%;
     margin-left: -1.5rem;
   }
 
