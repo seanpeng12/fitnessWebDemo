@@ -137,7 +137,7 @@ const { t } = useI18n();
 <style scoped>
 .payment-orbit {
   position: relative;
-  width: min(100%, 15rem);
+  width: min(90%, 13rem);
   aspect-ratio: 1;
   border-radius: 9999px;
   background-color: #f8f6f3;
@@ -190,7 +190,7 @@ const { t } = useI18n();
 
 @media (max-width: 380px) {
   .payment-orbit {
-    max-width: 13.5rem;
+    max-width: 12.5rem;
   }
 }
 </style>
