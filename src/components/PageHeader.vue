@@ -30,7 +30,7 @@
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"></path></svg>
             <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">{{ t('header.login') }}</span>
           </router-link>
-          <button :aria-label="t('header.search')" class="flex flex-col items-center space-y-1 group">
+          <button :aria-label="t('header.search')" class="hidden lg:flex flex-col items-center space-y-1 group">
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">{{ t('header.search') }}</span>
           </button>
@@ -68,6 +68,10 @@
         </button>
 
         <nav class="flex flex-col space-y-10 text-xl font-light tracking-[0.3em] uppercase">
+          <button class="flex items-center gap-4 text-left" :aria-label="t('header.search')">
+            <svg class="h-6 w-6 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"></path></svg>
+            <span>{{ t('header.search') }}</span>
+          </button>
           <router-link to="/#shop" @click="isMobileMenuOpen = false">{{ t('header.shop') }}</router-link>
           <router-link to="/#blog" @click="isMobileMenuOpen = false">{{ t('header.story') }}</router-link>
           

@@ -84,7 +84,7 @@
 
         <div>
           <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.payments') }}</h4>
-          <ul class="space-y-4">
+          <ul class="flex flex-wrap items-center gap-x-5 gap-y-4 lg:block lg:space-y-4">
             <li>
               <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Visa">
                 <img src="../../svg/visa.svg" alt="Visa" class="h-5 w-auto object-contain" />
