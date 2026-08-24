@@ -39,11 +39,19 @@
         <div>
           <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.connect') }}</h4>
           <div class="flex space-x-4 text-gray-400">
-            <a href="#" class="hover:text-bb-blue" title="Twitter">
-              <div class="w-5 h-5 bg-currentColor" style="-webkit-mask-image: url(/svg/twitter.svg); mask-image: url(/svg/twitter.svg); -webkit-mask-size: contain; mask-size: contain;"></div>
-            </a>
-            <a href="#" class="hover:text-bb-blue" title="Instagram">
-              <div class="w-5 h-5 bg-currentColor" style="-webkit-mask-image: url(/svg/instagram.svg); mask-image: url(/svg/instagram.svg); -webkit-mask-size: contain; mask-size: contain;"></div>
+            <a
+              href="https://www.instagram.com/trinity.roaster/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#D8CEC5] hover:border-bb-blue hover:text-bb-blue"
+              title="Instagram"
+              aria-label="Instagram"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke-width="1.7" />
+                <circle cx="12" cy="12" r="4" stroke-width="1.7" />
+                <circle cx="17.4" cy="6.7" r="1" fill="currentColor" stroke="none" />
+              </svg>
             </a>
           </div>
           <div class="mt-8 border-t border-[#E8E3DE] pt-6">
@@ -56,8 +64,14 @@
                     href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%8C%97%E5%B8%82%E6%B1%90%E6%AD%A2%E5%8D%80%E4%B8%AD%E6%AD%A3%E8%B7%AF111%E8%99%9F"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="hover:text-bb-blue"
-                  >{{ t('footer.address') }}</a>
+                    class="inline-flex items-start gap-2 hover:text-bb-blue"
+                  >
+                    <svg class="mt-0.5 h-4 w-4 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z" />
+                      <circle cx="12" cy="10" r="2" stroke-width="1.6" />
+                    </svg>
+                    <span>{{ t('footer.address') }}</span>
+                  </a>
                 </dd>
               </div>
               <div>
