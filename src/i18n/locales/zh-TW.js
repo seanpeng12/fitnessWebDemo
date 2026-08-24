@@ -4,7 +4,7 @@ export default {
     loading: '載入中…',
   },
   header: {
-    version: '2026-04-07 最新版本',
+    version: '2026優惠實施中',
     shop: '選購咖啡',
     story: '品牌故事',
     search: '搜尋',

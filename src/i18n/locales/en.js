@@ -1,6 +1,6 @@
 export default {
   common: { viewAll: 'View All', loading: 'Loading…' },
-  header: { version: '2026-04-07 Version', shop: 'Shop', story: 'Our Story', search: 'Search', cart: 'Cart', openMenu: 'Open menu', closeMenu: 'Close menu', login: 'Log In', join: 'Join Us', language: 'Language' },
+  header: { version: '2026 Promotion Now Available', shop: 'Shop', story: 'Our Story', search: 'Search', cart: 'Cart', openMenu: 'Open menu', closeMenu: 'Close menu', login: 'Log In', join: 'Join Us', language: 'Language' },
   hero: { tagline: 'Three principles. One consistent cup.', principles: 'Source · Craft · Consistency', description: 'Small-batch roasted coffee designed for cafés — balanced, reliable, and built to perform in every cup.', shop: 'Shop Coffee', learnMore: 'Learn More', imageAlt: 'Pour-over coffee and coffee beans' },
   shop: { eyebrow: 'Collection', title: 'Coffee Collections', description: 'From our signature blends to rare single-origin beans, find your perfect cup.', loading: 'Loading products…', empty: 'No products available.', notFound: 'Product not found', details: 'View Details', quickPurchase: 'Quick Purchase' },
   product: {
