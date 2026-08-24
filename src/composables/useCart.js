@@ -6,6 +6,7 @@ const CART_ID_KEY = 'shopify-cart-id'
 
 const cart = ref(null)
 const loading = ref(false)
+const checkingOut = ref(false)
 const error = ref('')
 const isOpen = ref(false)
 let initialized = false
@@ -197,12 +198,23 @@ async function removeLine(lineId) {
 
 async function checkout() {
   if (!cart.value?.checkoutUrl) return
-  const localizedCart = await refreshCart()
-  if (!localizedCart?.checkoutUrl) return
-  const url = new URL(localizedCart.checkoutUrl)
-  url.searchParams.set('sso', 'silent')
-  window.location.assign(url.toString())
+  checkingOut.value = true
+  try {
+    const localizedCart = await refreshCart()
+    if (!localizedCart?.checkoutUrl) {
+      checkingOut.value = false
+      return
+    }
+    const url = new URL(localizedCart.checkoutUrl)
+    url.searchParams.set('sso', 'silent')
+    window.location.assign(url.toString())
+  } catch (cause) {
+    error.value = cause.message
+    checkingOut.value = false
+  }
 }
+
+window.addEventListener('pageshow', () => { checkingOut.value = false })
 
 const lines = computed(() => cart.value?.lines?.nodes || [])
 const totalQuantity = computed(() => cart.value?.totalQuantity || 0)
@@ -213,6 +225,7 @@ export function useCart() {
     lines,
     totalQuantity,
     loading,
+    checkingOut,
     error,
     isOpen,
     loadCart,

@@ -58,8 +58,14 @@
             <strong>{{ money(cart.cost.subtotalAmount) }}</strong>
           </div>
           <p class="mt-2 text-[10px] leading-5 text-gray-400">{{ t('cart.checkoutNotice') }}</p>
-          <button :disabled="loading" class="mt-5 w-full bg-bb-blue py-4 text-xs font-bold tracking-[0.2em] text-white hover:opacity-90 disabled:opacity-50" @click="checkout">
-            {{ t('cart.checkout') }}
+          <button
+            :disabled="loading || checkingOut"
+            :aria-busy="checkingOut"
+            class="mt-5 inline-flex w-full items-center justify-center gap-3 bg-bb-blue py-4 text-xs font-bold tracking-[0.2em] text-white hover:opacity-90 disabled:cursor-wait disabled:opacity-70"
+            @click="checkout"
+          >
+            <span v-if="checkingOut" class="h-4 w-4 flex-none animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden="true"></span>
+            <span>{{ t('cart.checkout') }}</span>
           </button>
         </footer>
       </aside>
@@ -73,7 +79,7 @@ import { useI18n } from 'vue-i18n'
 import { useCart } from '../composables/useCart'
 
 const { t, locale } = useI18n()
-const { cart, lines, totalQuantity, loading, error, isOpen, loadCart, updateLine, removeLine, checkout } = useCart()
+const { cart, lines, totalQuantity, loading, checkingOut, error, isOpen, loadCart, updateLine, removeLine, checkout } = useCart()
 
 const money = ({ amount, currencyCode }) => new Intl.NumberFormat(
   locale.value === 'zh-TW' ? 'zh-TW' : 'en-US',
