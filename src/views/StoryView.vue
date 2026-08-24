@@ -49,7 +49,7 @@
         </div>
 
         <div class="mt-12 grid gap-12 lg:mt-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-start lg:gap-20">
-          <figure class="aspect-[4/5] overflow-hidden lg:-mt-28">
+          <figure class="aspect-[4/5] overflow-hidden">
             <img src="/images/story/small-batch-roast.jpg" :alt="t('story.imageAlt.batch')" class="h-full w-full object-cover">
           </figure>
           <div class="divide-y divide-[#DCD5CE] border-y border-[#DCD5CE]">
