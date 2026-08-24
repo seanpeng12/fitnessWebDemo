@@ -114,7 +114,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, computed } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useShopify } from '../composables/useShopify';
 import { useCart } from '../composables/useCart';
@@ -127,12 +127,12 @@ const { addLine, loading: cartLoading } = useCart();
 const scrollContainer = ref(null);
 const currentImageIndex = ref(0);
 const quantity = ref(1);
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const selectedVariant = computed(() => product.value?.variants.edges[0]?.node || null);
 
 const formatPrice = (amount, currencyCode) => {
-  return new Intl.NumberFormat('zh-TW', {
+  return new Intl.NumberFormat(locale.value === 'zh-TW' ? 'zh-TW' : 'en-US', {
     style: 'currency',
     currency: currencyCode,
   }).format(amount);
@@ -177,8 +177,7 @@ const initData = async () => {
   }
 };
 
-onMounted(initData);
-watch(() => props.handle, initData);
+watch([() => props.handle, locale], initData, { immediate: true });
 </script>
 
 <style scoped>

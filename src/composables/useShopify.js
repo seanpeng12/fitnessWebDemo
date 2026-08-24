@@ -2,12 +2,12 @@
 
 import { ref } from 'vue';
 import { shopifyFetch } from '../lib/shopify';
-import { i18n } from '../i18n';
+import { i18n, shopifyLanguageCode } from '../i18n';
 
 // --- GraphQL Query Statements ---
 
 const GET_PRODUCT_BY_HANDLE_QUERY = `
-  query getProductByHandle($handle: String!) {
+  query getProductByHandle($handle: String!, $language: LanguageCode!) @inContext(language: $language) {
     product(handle: $handle) {
       id
       title
@@ -42,7 +42,7 @@ const GET_PRODUCT_BY_HANDLE_QUERY = `
 `;
 
 const GET_PRODUCTS_QUERY = `
-  query getProducts($first: Int!, $after: String) {
+  query getProducts($first: Int!, $after: String, $language: LanguageCode!) @inContext(language: $language) {
     products(first: $first, after: $after) {
       nodes {
         id
@@ -103,6 +103,7 @@ export function useShopify() {
         const response = await shopifyFetch(GET_PRODUCTS_QUERY, {
           first: 50,
           after,
+          language: shopifyLanguageCode(),
         });
         const page = response.data.products;
 
@@ -126,7 +127,10 @@ export function useShopify() {
     error.value = null;
     product.value = null;
     try {
-      const response = await shopifyFetch(GET_PRODUCT_BY_HANDLE_QUERY, { handle });
+      const response = await shopifyFetch(GET_PRODUCT_BY_HANDLE_QUERY, {
+        handle,
+        language: shopifyLanguageCode(),
+      });
       if (!response.data.product) {
         throw new Error(i18n.global.t('product.notFound', { handle }));
       }

@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useShopify } from '../composables/useShopify';
 import { useCart } from '../composables/useCart';
@@ -58,7 +58,7 @@ const props = defineProps({
 });
 const { product, loading, fetchProductByHandle } = useShopify();
 const { addLine, loading: cartLoading } = useCart();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const activeImageUrl = computed(() => {
   if (!product.value) return '';
@@ -76,7 +76,7 @@ const selectedVariant = computed(() => {
 });
 
 const formatPrice = (amount, currencyCode) => {
-  return new Intl.NumberFormat('zh-TW', { style: 'currency', currency: currencyCode }).format(amount);
+  return new Intl.NumberFormat(locale.value === 'zh-TW' ? 'zh-TW' : 'en-US', { style: 'currency', currency: currencyCode }).format(amount);
 };
 
 const handleAddToCart = async () => {
@@ -84,11 +84,12 @@ const handleAddToCart = async () => {
   try { await addLine(selectedVariant.value.id, 1); } catch { /* Cart displays the error. */ }
 };
 
-onMounted(() => {
-  if (props.productData) {
-    product.value = props.productData;
-  } else {
-    fetchProductByHandle(props.productHandle);
-  }
-});
+watch(
+  [() => props.productData, () => props.productHandle, locale],
+  ([productData, productHandle]) => {
+    if (productData) product.value = productData;
+    else fetchProductByHandle(productHandle);
+  },
+  { immediate: true },
+);
 </script>

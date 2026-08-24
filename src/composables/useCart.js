@@ -1,5 +1,6 @@
 import { computed, ref } from 'vue'
 import { shopifyFetch } from '../lib/shopify'
+import { shopifyLanguageCode } from '../i18n'
 
 const CART_ID_KEY = 'shopify-cart-id'
 
@@ -44,14 +45,14 @@ const CART_FRAGMENT = `
 
 const GET_CART = `
   ${CART_FRAGMENT}
-  query Cart($id: ID!) {
+  query Cart($id: ID!, $language: LanguageCode!) @inContext(language: $language) {
     cart(id: $id) { ...CartDetails }
   }
 `
 
 const CREATE_CART = `
   ${CART_FRAGMENT}
-  mutation CartCreate($lines: [CartLineInput!]) {
+  mutation CartCreate($lines: [CartLineInput!], $language: LanguageCode!) @inContext(language: $language) {
     cartCreate(input: { lines: $lines }) {
       cart { ...CartDetails }
       userErrors { field message code }
@@ -61,7 +62,7 @@ const CREATE_CART = `
 
 const ADD_LINES = `
   ${CART_FRAGMENT}
-  mutation CartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+  mutation CartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!, $language: LanguageCode!) @inContext(language: $language) {
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart { ...CartDetails }
       userErrors { field message code }
@@ -71,7 +72,7 @@ const ADD_LINES = `
 
 const UPDATE_LINES = `
   ${CART_FRAGMENT}
-  mutation CartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+  mutation CartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!, $language: LanguageCode!) @inContext(language: $language) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
       cart { ...CartDetails }
       userErrors { field message code }
@@ -81,7 +82,7 @@ const UPDATE_LINES = `
 
 const REMOVE_LINES = `
   ${CART_FRAGMENT}
-  mutation CartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+  mutation CartLinesRemove($cartId: ID!, $lineIds: [ID!]!, $language: LanguageCode!) @inContext(language: $language) {
     cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
       cart { ...CartDetails }
       userErrors { field message code }
@@ -101,13 +102,20 @@ function applyPayload(payload) {
 async function loadCart() {
   if (initialized) return cart.value
   initialized = true
-  const cartId = localStorage.getItem(CART_ID_KEY)
+  return refreshCart()
+}
+
+async function refreshCart() {
+  const cartId = cart.value?.id || localStorage.getItem(CART_ID_KEY)
   if (!cartId) return null
 
   loading.value = true
   error.value = ''
   try {
-    const response = await shopifyFetch(GET_CART, { id: cartId })
+    const response = await shopifyFetch(GET_CART, {
+      id: cartId,
+      language: shopifyLanguageCode(),
+    })
     cart.value = response.data.cart
     if (!cart.value) localStorage.removeItem(CART_ID_KEY)
     return cart.value
@@ -126,10 +134,17 @@ async function addLine(merchandiseId, quantity = 1) {
   try {
     const lines = [{ merchandiseId, quantity: Math.max(1, Number(quantity) || 1) }]
     if (!cart.value) {
-      const response = await shopifyFetch(CREATE_CART, { lines })
+      const response = await shopifyFetch(CREATE_CART, {
+        lines,
+        language: shopifyLanguageCode(),
+      })
       applyPayload(response.data.cartCreate)
     } else {
-      const response = await shopifyFetch(ADD_LINES, { cartId: cart.value.id, lines })
+      const response = await shopifyFetch(ADD_LINES, {
+        cartId: cart.value.id,
+        lines,
+        language: shopifyLanguageCode(),
+      })
       applyPayload(response.data.cartLinesAdd)
     }
     return cart.value
@@ -150,6 +165,7 @@ async function updateLine(lineId, quantity) {
     const response = await shopifyFetch(UPDATE_LINES, {
       cartId: cart.value.id,
       lines: [{ id: lineId, quantity: Number(quantity) }],
+      language: shopifyLanguageCode(),
     })
     return applyPayload(response.data.cartLinesUpdate)
   } catch (cause) {
@@ -168,6 +184,7 @@ async function removeLine(lineId) {
     const response = await shopifyFetch(REMOVE_LINES, {
       cartId: cart.value.id,
       lineIds: [lineId],
+      language: shopifyLanguageCode(),
     })
     return applyPayload(response.data.cartLinesRemove)
   } catch (cause) {
@@ -178,9 +195,11 @@ async function removeLine(lineId) {
   }
 }
 
-function checkout() {
+async function checkout() {
   if (!cart.value?.checkoutUrl) return
-  const url = new URL(cart.value.checkoutUrl)
+  const localizedCart = await refreshCart()
+  if (!localizedCart?.checkoutUrl) return
+  const url = new URL(localizedCart.checkoutUrl)
   url.searchParams.set('sso', 'silent')
   window.location.assign(url.toString())
 }
@@ -197,6 +216,7 @@ export function useCart() {
     error,
     isOpen,
     loadCart,
+    refreshCart,
     addLine,
     updateLine,
     removeLine,

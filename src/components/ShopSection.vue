@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ProductDisplay from './ProductDisplay.vue';
 import { useShopify } from '../composables/useShopify';
@@ -40,7 +40,7 @@ import { useShopify } from '../composables/useShopify';
 defineEmits(['select-product']);
 
 const { products, loading, error, fetchAllProducts } = useShopify();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
-onMounted(fetchAllProducts);
+watch(locale, fetchAllProducts, { immediate: true });
 </script>

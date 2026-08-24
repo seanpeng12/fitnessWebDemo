@@ -111,9 +111,12 @@ import { useCustomerAuth } from '../composables/useCustomerAuth';
 
 const isMobileMenuOpen = ref(false);
 const { t, locale } = useI18n();
-const { isOpen, totalQuantity } = useCart();
+const { isOpen, totalQuantity, refreshCart } = useCart();
 const { isAuthenticated, logout } = useCustomerAuth();
-const toggleLocale = () => setLocale(locale.value === 'zh-TW' ? 'en' : 'zh-TW');
+const toggleLocale = () => {
+  setLocale(locale.value === 'zh-TW' ? 'en' : 'zh-TW');
+  refreshCart();
+};
 const handleLogout = async () => {
   isMobileMenuOpen.value = false;
   try { await logout(); } catch { /* The local session is already cleared. */ }

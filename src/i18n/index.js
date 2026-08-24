@@ -28,3 +28,7 @@ export function setLocale(locale) {
     ? 'Trinity Coffee Roaster 官方網站'
     : 'Trinity Coffee Roaster Official Website'
 }
+
+export function shopifyLanguageCode() {
+  return i18n.global.locale.value === 'zh-TW' ? 'ZH_TW' : 'EN'
+}
