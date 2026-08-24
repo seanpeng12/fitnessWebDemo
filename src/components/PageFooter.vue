@@ -46,6 +46,26 @@
               <div class="w-5 h-5 bg-currentColor" style="-webkit-mask-image: url(/svg/instagram.svg); mask-image: url(/svg/instagram.svg); -webkit-mask-size: contain; mask-size: contain;"></div>
             </a>
           </div>
+          <div class="mt-8 border-t border-[#E8E3DE] pt-6">
+            <h5 class="text-[10px] font-bold tracking-[0.25em] text-bb-text">{{ t('footer.contact') }}</h5>
+            <dl class="mt-4 space-y-4 text-[11px] font-light leading-5 text-gray-500">
+              <div>
+                <dt class="mb-1 font-medium text-bb-text">{{ t('footer.addressLabel') }}</dt>
+                <dd>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%8C%97%E5%B8%82%E6%B1%90%E6%AD%A2%E5%8D%80%E4%B8%AD%E6%AD%A3%E8%B7%AF111%E8%99%9F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-bb-blue"
+                  >{{ t('footer.address') }}</a>
+                </dd>
+              </div>
+              <div>
+                <dt class="mb-1 font-medium text-bb-text">{{ t('footer.phoneLabel') }}</dt>
+                <dd><a href="tel:+886226918858" class="hover:text-bb-blue">02-2691-8858</a></dd>
+              </div>
+            </dl>
+          </div>
         </div>
 
         <div>
