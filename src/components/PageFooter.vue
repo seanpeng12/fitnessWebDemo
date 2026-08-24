@@ -92,16 +92,6 @@
         <div>
           <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.payments') }}</h4>
           <ul class="payment-orbit">
-            <svg class="payment-dot-field" viewBox="0 0 240 240" aria-hidden="true">
-              <circle
-                v-for="(dot, index) in paymentDots"
-                :key="index"
-                :cx="dot.cx"
-                :cy="dot.cy"
-                :r="dot.r"
-                :opacity="dot.opacity"
-              />
-            </svg>
             <li class="payment-item payment-item--visa">
               <span class="payment-badge" title="Visa">
                 <img src="../../svg/visa.svg" alt="Visa" class="payment-logo" />
@@ -142,19 +132,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
-
-const paymentDots = Array.from({ length: 82 }, (_, index) => {
-  const angle = index * 2.399963;
-  const irregularity = 0.84 + 0.16 * Math.sin(index * 1.73);
-  const radius = 9 + Math.sqrt(index / 81) * 105 * irregularity;
-
-  return {
-    cx: 120 + Math.cos(angle) * radius,
-    cy: 118 + Math.sin(angle) * radius * 0.88,
-    r: index % 7 === 0 ? 2.2 : index % 3 === 0 ? 1.55 : 1.1,
-    opacity: 0.24 + (index % 5) * 0.1,
-  };
-});
 </script>
 
 <style scoped>
@@ -162,15 +139,10 @@ const paymentDots = Array.from({ length: 82 }, (_, index) => {
   position: relative;
   width: min(100%, 15rem);
   aspect-ratio: 1;
-}
-
-.payment-dot-field {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  fill: #6b9a9b;
-  transform: rotate(-5deg) scale(0.96);
+  border-radius: 9999px;
+  background-color: #f8f6f3;
+  background-image: radial-gradient(circle, rgba(107, 154, 155, 0.42) 1.25px, transparent 1.5px);
+  background-size: 11px 11px;
 }
 
 .payment-item {
@@ -181,21 +153,25 @@ const paymentDots = Array.from({ length: 82 }, (_, index) => {
 .payment-item--visa {
   top: 11%;
   left: 3%;
+  transform: rotate(-4deg);
 }
 
 .payment-item--line {
   top: 34%;
   right: 2%;
+  transform: rotate(3deg);
 }
 
 .payment-item--apple {
   bottom: 24%;
   left: 5%;
+  transform: rotate(2deg);
 }
 
 .payment-item--jko {
   right: 9%;
   bottom: 7%;
+  transform: rotate(-5deg);
 }
 
 .payment-badge {
@@ -204,13 +180,16 @@ const paymentDots = Array.from({ length: 82 }, (_, index) => {
   height: 2.35rem;
   align-items: center;
   justify-content: center;
+  border: 1px solid #e2dcd6;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 5px 14px rgba(90, 84, 80, 0.08);
 }
 
 .payment-logo {
-  width: 82%;
-  height: 1.15rem;
+  width: 72%;
+  height: 1rem;
   object-fit: contain;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.95));
 }
 
 @media (max-width: 380px) {
