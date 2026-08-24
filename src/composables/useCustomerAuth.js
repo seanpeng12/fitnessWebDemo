@@ -5,8 +5,11 @@ const TOKEN_KEY = 'shopify-customer-tokens'
 const OAUTH_KEY = 'shopify-customer-oauth'
 
 const customer = ref(null)
+const orders = ref([])
 const loading = ref(false)
+const ordersLoading = ref(false)
 const error = ref('')
+const ordersError = ref('')
 const tokens = ref(readJson(TOKEN_KEY))
 
 const storeDomain = (import.meta.env.VITE_SHOPIFY_STORE_DOMAIN || '')
@@ -179,9 +182,65 @@ async function fetchCustomer() {
   return customer.value
 }
 
+async function fetchOrders() {
+  if (!isAuthenticated.value) return []
+  ordersLoading.value = true
+  ordersError.value = ''
+  try {
+    const config = await discover('/.well-known/customer-account-api')
+    const response = await fetch(config.graphql_api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: tokens.value.accessToken,
+      },
+      body: JSON.stringify({
+        query: `query CustomerOrders {
+          customer {
+            orders(first: 20, reverse: true, sortKey: PROCESSED_AT) {
+              nodes {
+                id
+                name
+                number
+                processedAt
+                financialStatus
+                fulfillmentStatus
+                statusPageUrl
+                totalPrice { amount currencyCode }
+                lineItems(first: 20) {
+                  nodes {
+                    id
+                    title
+                    variantTitle
+                    quantity
+                    image { url altText }
+                    totalPrice { amount currencyCode }
+                  }
+                }
+              }
+            }
+          }
+        }`,
+      }),
+    })
+    const result = await response.json()
+    if (!response.ok || result.errors) {
+      throw new Error(result.errors?.map((item) => item.message).join('\n') || i18n.global.t('orders.loadFailed'))
+    }
+    orders.value = result.data.customer.orders.nodes
+    return orders.value
+  } catch (cause) {
+    ordersError.value = cause.message || i18n.global.t('orders.loadFailed')
+    return []
+  } finally {
+    ordersLoading.value = false
+  }
+}
+
 function clearLocalSession() {
   tokens.value = null
   customer.value = null
+  orders.value = []
   sessionStorage.removeItem(TOKEN_KEY)
   sessionStorage.removeItem(OAUTH_KEY)
 }
@@ -207,13 +266,17 @@ const isConfigured = computed(() => Boolean(storeDomain && clientId))
 export function useCustomerAuth() {
   return {
     customer,
+    orders,
     loading,
+    ordersLoading,
     error,
+    ordersError,
     isAuthenticated,
     isConfigured,
     login,
     logout,
     handleCallback,
     fetchCustomer,
+    fetchOrders,
   }
 }

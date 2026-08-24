@@ -72,10 +72,11 @@
           </div>
 
           <button 
-            @click="handleBuyNow"
-            class="w-full bg-bb-blue text-white py-4 text-xs font-bold tracking-[0.2em] hover:bg-opacity-90 transition-all mb-8 uppercase"
+            :disabled="cartLoading || !selectedVariant?.availableForSale"
+            @click="handleAddToCart"
+            class="w-full bg-bb-blue text-white py-4 text-xs font-bold tracking-[0.2em] hover:bg-opacity-90 transition-all mb-8 uppercase disabled:cursor-not-allowed disabled:bg-gray-300"
           >
-            {{ t('product.addToCart') }}
+            {{ selectedVariant?.availableForSale ? t('product.addToCart') : t('product.soldOut') }}
           </button>
 
           <div
@@ -116,11 +117,13 @@
 import { ref, watch, onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useShopify } from '../composables/useShopify';
+import { useCart } from '../composables/useCart';
 
 const props = defineProps({ handle: { type: String, required: true } });
 defineEmits(['close']);
 
-const { product, loading, fetchProductByHandle, createCart } = useShopify();
+const { product, loading, fetchProductByHandle } = useShopify();
+const { addLine, loading: cartLoading } = useCart();
 const scrollContainer = ref(null);
 const currentImageIndex = ref(0);
 const quantity = ref(1);
@@ -161,10 +164,9 @@ const scrollToImage = (index) => {
   currentImageIndex.value = index;
 };
 
-const handleBuyNow = async () => {
+const handleAddToCart = async () => {
   if (!selectedVariant.value) return;
-  const checkoutUrl = await createCart(selectedVariant.value.id, Number(quantity.value));
-  if (checkoutUrl) window.location.href = checkoutUrl;
+  try { await addLine(selectedVariant.value.id, Number(quantity.value)); } catch { /* Cart displays the error. */ }
 };
 
 const initData = async () => {

@@ -7,12 +7,14 @@
       <router-view></router-view>
     </main>
     <PageFooter />
+    <CartDrawer />
   </div>
 </template>
 
 <script setup>
 import PageHeader from './components/PageHeader.vue';
 import PageFooter from './components/PageFooter.vue';
+import CartDrawer from './components/CartDrawer.vue';
 </script>
 
 <style>

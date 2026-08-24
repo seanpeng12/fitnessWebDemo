@@ -4,7 +4,7 @@ export default {
   hero: { tagline: 'Three principles. One consistent cup.', principles: 'Source · Craft · Consistency', description: 'Small-batch roasted coffee designed for cafés — balanced, reliable, and built to perform in every cup.', shop: 'Shop Coffee', learnMore: 'Learn More', imageAlt: 'Pour-over coffee and coffee beans' },
   shop: { eyebrow: 'Collection', title: 'Coffee Collections', description: 'From our signature blends to rare single-origin beans, find your perfect cup.', loading: 'Loading products…', empty: 'No products available.', notFound: 'Product not found', details: 'View Details', quickPurchase: 'Quick Purchase' },
   product: {
-    home: 'Home', coffee: 'Coffee', quantity: 'Quantity', addToCart: 'Add to Cart', category: 'Category', event: 'Coffee Life Day', notFound: 'Product with handle “{handle}” was not found.',
+    home: 'Home', coffee: 'Coffee', quantity: 'Quantity', addToCart: 'Add to Cart', soldOut: 'Sold Out', category: 'Category', event: 'Coffee Life Day', notFound: 'Product with handle “{handle}” was not found.',
     categories: { coffee: 'Coffee', drinkware: 'Drinkware', goods: 'Goods', food: 'Food', brewing: 'Brewing', exclusive: 'Online Exclusive' },
   },
   blog: {
@@ -55,5 +55,17 @@ export default {
     accountTitle: 'My Account',
     welcome: 'Welcome back, {name}',
     logout: 'Log out',
+  },
+  cart: {
+    title: 'Shopping Cart', close: 'Close cart', loading: 'Loading cart…', empty: 'Your cart is empty', continueShopping: 'Continue shopping', remove: 'Remove', subtotal: 'Subtotal', checkoutNotice: 'Shipping, taxes, and discounts are confirmed at Shopify checkout.', checkout: 'Proceed to Checkout',
+  },
+  orders: {
+    title: 'Order History', count: '{count} orders', loading: 'Loading Shopify orders…', empty: 'You have no orders yet', shopNow: 'Start shopping', viewDetails: 'View order details', loadFailed: 'Could not load Shopify orders.', permissionHint: 'Make sure order access is enabled in Headless → Customer Account API permissions.',
+    financial: {
+      AUTHORIZED: 'Authorized', PAID: 'Paid', PARTIALLY_PAID: 'Partially paid', PARTIALLY_REFUNDED: 'Partially refunded', PENDING: 'Payment pending', REFUNDED: 'Refunded', VOIDED: 'Voided', EXPIRED: 'Expired', UNKNOWN: 'Payment unknown',
+    },
+    fulfillment: {
+      FULFILLED: 'Fulfilled', IN_PROGRESS: 'In progress', ON_HOLD: 'On hold', OPEN: 'Open', PARTIALLY_FULFILLED: 'Partially fulfilled', PENDING_FULFILLMENT: 'Pending fulfillment', RESTOCKED: 'Restocked', SCHEDULED: 'Scheduled', UNFULFILLED: 'Unfulfilled', UNKNOWN: 'Fulfillment unknown',
+    },
   },
 }

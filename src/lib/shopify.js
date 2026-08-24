@@ -16,7 +16,7 @@ export async function shopifyFetch(query, variables = {}) {
     throw new Error("Missing Shopify API credentials. Please check your .env.local file.");
   }
   
-  const endpoint = `https://${apiUrl}/api/2024-04/graphql.json`;
+  const endpoint = `https://${apiUrl}/api/2026-07/graphql.json`;
 
   const response = await fetch(endpoint, {
     method: 'POST',

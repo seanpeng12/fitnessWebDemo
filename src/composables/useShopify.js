@@ -25,6 +25,7 @@ const GET_PRODUCT_BY_HANDLE_QUERY = `
           node {
             id
             title
+            availableForSale
             price {
               amount
               currencyCode
@@ -61,6 +62,7 @@ const GET_PRODUCTS_QUERY = `
             node {
               id
               title
+              availableForSale
               price {
                 amount
                 currencyCode
@@ -80,23 +82,6 @@ const GET_PRODUCTS_QUERY = `
     }
   }
 `;
-
-const CREATE_CART_MUTATION = `
-  mutation cartCreate($lines: [CartLineInput!]!) {
-    cartCreate(input: { lines: $lines }) {
-      cart {
-        id
-        checkoutUrl
-      }
-      userErrors {
-        code
-        field
-        message
-      }
-    }
-  }
-`;
-
 
 export function useShopify() {
   const product = ref(null);
@@ -152,37 +137,6 @@ export function useShopify() {
       loading.value = false;
     }
   };
-  
-  /**
-   * Creates a Shopify cart and returns the checkout URL
-   * @param {string} variantId - The product variant ID (merchandiseId)
-   * @param {number} quantity - Purchase quantity
-   * @returns {Promise<string|null>} - Checkout URL, or null if failed
-   */
-  const createCart = async (variantId, quantity) => {
-    loading.value = true;
-    error.value = null;
-    try {
-      const response = await shopifyFetch(CREATE_CART_MUTATION, {
-        lines: [{ merchandiseId: variantId, quantity }],
-      });
-      
-      const cartData = response.data.cartCreate;
-
-      if (cartData.userErrors.length > 0) {
-        throw new Error(cartData.userErrors.map(e => e.message).join('\n'));
-      }
-
-      return cartData.cart?.checkoutUrl || null;
-      
-    } catch (e) {
-      error.value = e.message;
-      return null;
-    } finally {
-      loading.value = false;
-    }
-  };
-
   return {
     product,
     products,
@@ -190,6 +144,5 @@ export function useShopify() {
     error,
     fetchAllProducts,
     fetchProductByHandle,
-    createCart,
   };
 }

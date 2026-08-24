@@ -34,9 +34,10 @@
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">{{ t('header.search') }}</span>
           </button>
-          <button :aria-label="t('header.cart')" class="flex flex-col items-center space-y-1 group relative">
+          <button :aria-label="t('header.cart')" class="flex flex-col items-center space-y-1 group relative" @click="isOpen = true">
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
             <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">{{ t('header.cart') }}</span>
+            <span v-if="totalQuantity" class="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-bb-blue px-1 text-[8px] font-bold text-white">{{ totalQuantity }}</span>
           </button>
 
           <button
@@ -86,9 +87,11 @@
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { setLocale } from '../i18n';
+import { useCart } from '../composables/useCart';
 
 const isMobileMenuOpen = ref(false);
 const { t, locale } = useI18n();
+const { isOpen, totalQuantity } = useCart();
 const toggleLocale = () => setLocale(locale.value === 'zh-TW' ? 'en' : 'zh-TW');
 </script>
 

@@ -36,28 +36,29 @@
 
       <!-- Buy Button -->
       <button 
-        @click="handleBuyNow" 
-        class="mt-auto w-full border-2 border-[#6B9A9B] py-3 text-[10px] font-bold tracking-widest uppercase hover:bg-[#6B9A9B] hover:text-white transition-all text-[#6B9A9B]"
+        :disabled="cartLoading || !selectedVariant?.availableForSale"
+        @click="handleAddToCart"
+        class="mt-auto w-full border-2 border-[#6B9A9B] py-3 text-[10px] font-bold tracking-widest uppercase hover:bg-[#6B9A9B] hover:text-white transition-all text-[#6B9A9B] disabled:cursor-not-allowed disabled:border-gray-300 disabled:text-gray-400 disabled:hover:bg-transparent"
       >
-        {{ t('shop.quickPurchase') }}
+        {{ selectedVariant?.availableForSale ? t('product.addToCart') : t('product.soldOut') }}
       </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted, computed } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useShopify } from '../composables/useShopify';
+import { useCart } from '../composables/useCart';
 
 const props = defineProps({
   productHandle: { type: String, required: true },
   productData: { type: Object, default: null },
 });
-const { product, loading, fetchProductByHandle, createCart } = useShopify();
+const { product, loading, fetchProductByHandle } = useShopify();
+const { addLine, loading: cartLoading } = useCart();
 const { t } = useI18n();
-
-const selectedVariantId = ref(null);
 
 const activeImageUrl = computed(() => {
   if (!product.value) return '';
@@ -78,10 +79,9 @@ const formatPrice = (amount, currencyCode) => {
   return new Intl.NumberFormat('zh-TW', { style: 'currency', currency: currencyCode }).format(amount);
 };
 
-const handleBuyNow = async () => {
+const handleAddToCart = async () => {
   if (!selectedVariant.value) return;
-  const checkoutUrl = await createCart(selectedVariant.value.id, 1);
-  if (checkoutUrl) window.location.href = checkoutUrl;
+  try { await addLine(selectedVariant.value.id, 1); } catch { /* Cart displays the error. */ }
 };
 
 onMounted(() => {
