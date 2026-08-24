@@ -137,7 +137,7 @@ const { t } = useI18n();
 <style scoped>
 .payment-orbit {
   position: relative;
-  width: min(90%, 13rem);
+  width: min(60%, 8.667rem);
   aspect-ratio: 1;
   border-radius: 9999px;
   background-color: #f8f6f3;
@@ -173,7 +173,7 @@ const { t } = useI18n();
 .payment-badge {
   display: flex;
   width: 100%;
-  height: 2.35rem;
+  aspect-ratio: 2.4 / 1;
   align-items: center;
   justify-content: center;
   border: 1px solid #e2dcd6;
@@ -184,13 +184,13 @@ const { t } = useI18n();
 
 .payment-logo {
   width: 72%;
-  height: 1rem;
+  height: 42%;
   object-fit: contain;
 }
 
 @media (max-width: 380px) {
   .payment-orbit {
-    max-width: 12.5rem;
+    max-width: 8.333rem;
   }
 }
 </style>
