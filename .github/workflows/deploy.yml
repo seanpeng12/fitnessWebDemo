@@ -47,14 +47,14 @@ jobs:
             exit 1
           fi
       - name: Build
-        run: npm run build -- --base=/${{ github.event.repository.name }}/
+        run: npm run build -- --base=/
         env:
           VITE_SHOPIFY_STORE_DOMAIN: ${{ secrets.VITE_SHOPIFY_STORE_DOMAIN }}
           VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN: ${{ secrets.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN }}
           # Public OAuth client identifier; it is visible in the browser bundle by design.
           VITE_SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID: 56d89875-9127-4792-b5f6-c67960951dc2
-          VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
-          VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+          VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI: https://trinityroastery.com/
+          VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI: https://trinityroastery.com/
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
