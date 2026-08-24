@@ -22,7 +22,7 @@ export default {
     imageAlt: { machine: 'Coffee roaster and cooling tray', beans: 'Freshly roasted coffee beans in a cooling tray', batch: 'Coffee beans during small-batch roasting' },
     photoNote: 'Images depict the craft of coffee roasting',
   },
-  shop: { eyebrow: 'Collection', title: 'Coffee Collections', description: 'From our signature blends to rare single-origin beans, find your perfect cup.', loading: 'Loading products…', empty: 'No products available.', notFound: 'Product not found', details: 'View Details', quickPurchase: 'Quick Purchase' },
+  shop: { eyebrow: 'Collection', title: 'Coffee Collections', description: 'From our signature blends to rare single-origin beans, find your perfect cup.', loading: 'Loading products…', empty: 'No products available.', notFound: 'Product not found', details: 'View Details', quickPurchase: 'Quick Purchase', categoryLabel: 'Product category', allCategories: 'All categories' },
   product: {
     home: 'Home', coffee: 'Coffee', quantity: 'Quantity', addToCart: 'Add to Cart', soldOut: 'Sold Out', category: 'Category', event: 'Coffee Life Day', notFound: 'Product with handle “{handle}” was not found.',
     categories: { coffee: 'Coffee', drinkware: 'Drinkware', goods: 'Goods', food: 'Food', brewing: 'Brewing', exclusive: 'Online Exclusive' },

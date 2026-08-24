@@ -56,6 +56,8 @@ export default {
     notFound: '找不到商品',
     details: '查看詳情',
     quickPurchase: '立即購買',
+    categoryLabel: '商品分類',
+    allCategories: '所有分類',
   },
   product: {
     home: '首頁',

@@ -43,11 +43,15 @@ const GET_PRODUCT_BY_HANDLE_QUERY = `
 
 const GET_PRODUCTS_QUERY = `
   query getProducts($first: Int!, $after: String, $language: LanguageCode!) @inContext(language: $language) {
+    productTypes(first: 250) {
+      nodes
+    }
     products(first: $first, after: $after) {
       nodes {
         id
         handle
         title
+        productType
         descriptionHtml
         images(first: 5) {
           edges {
@@ -86,6 +90,7 @@ const GET_PRODUCTS_QUERY = `
 export function useShopify() {
   const product = ref(null);
   const products = ref([]);
+  const productTypes = ref([]);
   const loading = ref(false);
   const error = ref(null);
 
@@ -94,6 +99,7 @@ export function useShopify() {
     loading.value = true;
     error.value = null;
     products.value = [];
+    productTypes.value = [];
 
     try {
       let after = null;
@@ -106,6 +112,10 @@ export function useShopify() {
           language: shopifyLanguageCode(),
         });
         const page = response.data.products;
+
+        if (productTypes.value.length === 0) {
+          productTypes.value = response.data.productTypes.nodes.filter(Boolean);
+        }
 
         products.value.push(...page.nodes);
         hasNextPage = page.pageInfo.hasNextPage;
@@ -144,6 +154,7 @@ export function useShopify() {
   return {
     product,
     products,
+    productTypes,
     loading,
     error,
     fetchAllProducts,
