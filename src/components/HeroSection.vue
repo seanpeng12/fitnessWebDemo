@@ -1,7 +1,10 @@
 <!-- src/components/HeroSection.vue -->
 <template>
-  <section class="relative bg-[#F7F7F7] overflow-hidden">
-    <div class="max-w-screen-2xl mx-auto px-6 lg:px-12 py-24 lg:py-40 flex flex-col lg:flex-row items-center justify-between">
+  <section class="relative overflow-hidden bg-[#F7F7F7]">
+    <div class="editorial-lines pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute left-[8%] top-0 hidden h-full w-px bg-[#BEB4AA]/25 lg:block" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute right-[7%] top-[18%] hidden h-px w-[36%] bg-[#BEB4AA]/35 lg:block" aria-hidden="true"></div>
+    <div class="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-24 lg:py-40 flex flex-col lg:flex-row items-center justify-between">
       <!-- Text Content -->
       <div class="lg:w-1/2 z-10 mb-12 lg:mb-0">
         <h1 class="text-4xl md:text-6xl font-light tracking-tight text-bb-text mb-6 leading-tight">
@@ -57,3 +60,19 @@
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 </script>
+
+<style scoped>
+.editorial-lines {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(126, 111, 98, 0.055) 0, rgba(126, 111, 98, 0.055) 1px, transparent 1px, transparent 96px),
+    repeating-linear-gradient(0deg, rgba(126, 111, 98, 0.04) 0, rgba(126, 111, 98, 0.04) 1px, transparent 1px, transparent 96px);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 16%, black 84%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 16%, black 84%, transparent);
+}
+
+@media (max-width: 1023px) {
+  .editorial-lines {
+    background-image: repeating-linear-gradient(90deg, rgba(126, 111, 98, 0.045) 0, rgba(126, 111, 98, 0.045) 1px, transparent 1px, transparent 72px);
+  }
+}
+</style>
