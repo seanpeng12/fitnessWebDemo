@@ -99,7 +99,7 @@
             </li>
             <li class="payment-item payment-item--line">
               <span class="payment-badge" title="Line Pay">
-                <img src="../../svg/linePay.svg" alt="Line Pay" class="payment-logo payment-logo--line" />
+                <img src="../../svg/linePay.svg" alt="Line Pay" class="payment-logo payment-logo--preserve-white" />
               </span>
             </li>
             <li class="payment-item payment-item--apple">
@@ -109,7 +109,7 @@
             </li>
             <li class="payment-item payment-item--jko">
               <span class="payment-badge" title="Jko Pay">
-                <img src="../../svg/jkopay.svg" alt="Jko Pay" class="payment-logo" />
+                <img src="../../svg/jkopay.svg" alt="Jko Pay" class="payment-logo payment-logo--preserve-white" />
               </span>
             </li>
           </ul>
@@ -190,8 +190,8 @@ const { t } = useI18n();
   filter: brightness(0) saturate(100%) invert(61%) sepia(12%) saturate(852%) hue-rotate(132deg) brightness(91%) contrast(86%);
 }
 
-.payment-logo--line {
-  filter: hue-rotate(38deg) saturate(0.45) brightness(0.92);
+.payment-logo--preserve-white {
+  filter: none;
 }
 
 @media (max-width: 380px) {
