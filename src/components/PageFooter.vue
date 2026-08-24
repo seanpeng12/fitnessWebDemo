@@ -181,25 +181,21 @@ const paymentDots = Array.from({ length: 82 }, (_, index) => {
 .payment-item--visa {
   top: 11%;
   left: 3%;
-  transform: rotate(-4deg);
 }
 
 .payment-item--line {
   top: 34%;
   right: 2%;
-  transform: rotate(3deg);
 }
 
 .payment-item--apple {
   bottom: 24%;
   left: 5%;
-  transform: rotate(2deg);
 }
 
 .payment-item--jko {
   right: 9%;
   bottom: 7%;
-  transform: rotate(-5deg);
 }
 
 .payment-badge {
