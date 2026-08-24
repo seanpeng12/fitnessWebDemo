@@ -11,11 +11,13 @@
     <transition name="cart-slide">
       <aside
         v-if="isOpen"
-        class="fixed right-0 top-0 z-[100] flex h-full w-full max-w-md flex-col bg-white shadow-2xl"
+        class="fixed right-0 top-0 z-[100] h-full w-full bg-white shadow-2xl"
+        :class="checkingOut ? 'max-w-none' : 'max-w-md'"
         role="dialog"
         aria-modal="true"
         :aria-label="t('cart.title')"
       >
+        <div class="ml-auto flex h-full w-full max-w-md flex-col bg-white">
         <header class="flex items-center justify-between border-b border-[#E8E3DE] px-6 py-5">
           <div>
             <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-bb-blue">Trinity Coffee Roaster</p>
@@ -73,6 +75,7 @@
             <span>{{ t('cart.checkout') }}</span>
           </button>
         </footer>
+        </div>
       </aside>
     </transition>
   </teleport>
