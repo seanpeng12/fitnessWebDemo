@@ -99,7 +99,7 @@
             </li>
             <li class="payment-item payment-item--line">
               <span class="payment-badge" title="Line Pay">
-                <img src="../../svg/linePay.svg" alt="Line Pay" class="payment-logo" />
+                <img src="../../svg/linePay.svg" alt="Line Pay" class="payment-logo payment-logo--line" />
               </span>
             </li>
             <li class="payment-item payment-item--apple">
@@ -188,6 +188,10 @@ const { t } = useI18n();
   height: 1rem;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(61%) sepia(12%) saturate(852%) hue-rotate(132deg) brightness(91%) contrast(86%);
+}
+
+.payment-logo--line {
+  filter: hue-rotate(38deg) saturate(0.45) brightness(0.92);
 }
 
 @media (max-width: 380px) {
