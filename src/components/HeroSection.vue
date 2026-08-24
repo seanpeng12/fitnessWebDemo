@@ -31,7 +31,7 @@
       </div>
 
       <!-- Editorial Hero Image -->
-      <div class="relative w-full lg:w-1/2 lg:pl-10">
+      <div class="mobile-image-layout relative w-full lg:w-1/2 lg:pl-10">
         <div class="editorial-outline absolute -right-5 -top-5 hidden h-full w-[88%] border border-[#D8D0C8] lg:block"></div>
         <figure class="editorial-frame relative mx-auto w-full max-w-2xl bg-[#EFEAE4] p-3 sm:p-4">
           <div class="editorial-photo relative aspect-[5/4] overflow-hidden bg-[#DDD6CF]">
@@ -50,6 +50,10 @@
             </span>
           </figcaption>
         </figure>
+        <div class="mt-4 flex items-center justify-end gap-3 pr-1 text-[8px] font-medium uppercase tracking-[0.26em] text-[#8D8177] lg:hidden">
+          <span class="h-px w-10 bg-[#AFA399]"></span>
+          <span>{{ t('hero.principles') }}</span>
+        </div>
         <div class="absolute -bottom-4 left-2 hidden h-9 w-9 bg-bb-blue/80 lg:block"></div>
       </div>
     </div>
@@ -84,6 +88,12 @@ const { t } = useI18n();
 }
 
 @media (max-width: 1023px) {
+  .mobile-image-layout {
+    align-self: flex-start;
+    width: calc(100% + 1.5rem);
+    margin-left: -1.5rem;
+  }
+
   .editorial-frame {
     background: transparent;
     clip-path: none;
