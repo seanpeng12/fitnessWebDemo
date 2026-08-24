@@ -91,26 +91,26 @@
 
         <div>
           <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.payments') }}</h4>
-          <ul class="flex flex-wrap items-center gap-x-5 gap-y-4 lg:block lg:space-y-4">
+          <ul class="grid grid-cols-4 gap-2 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             <li>
-              <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Visa">
-                <img src="../../svg/visa.svg" alt="Visa" class="h-5 w-auto object-contain" />
-              </a>
+              <span class="payment-badge" title="Visa">
+                <img src="../../svg/visa.svg" alt="Visa" class="payment-logo" />
+              </span>
             </li>
             <li>
-              <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Line Pay">
-                <img src="../../svg/linePay.svg" alt="Line Pay" class="h-5 w-auto object-contain" />
-              </a>
+              <span class="payment-badge" title="Line Pay">
+                <img src="../../svg/linePay.svg" alt="Line Pay" class="payment-logo" />
+              </span>
             </li>
             <li>
-              <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Apple Pay">
-                <img src="../../svg/applePay.svg" alt="Apple Pay" class="h-5 w-auto object-contain" />
-              </a>
+              <span class="payment-badge" title="Apple Pay">
+                <img src="../../svg/applePay.svg" alt="Apple Pay" class="payment-logo" />
+              </span>
             </li>
             <li>
-              <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Jko Pay">
-                <img src="../../svg/jkopay.svg" alt="Jko Pay" class="h-5 w-auto object-contain" />
-              </a>
+              <span class="payment-badge" title="Jko Pay">
+                <img src="../../svg/jkopay.svg" alt="Jko Pay" class="payment-logo" />
+              </span>
             </li>
           </ul>
         </div>
@@ -133,3 +133,27 @@
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 </script>
+
+<style scoped>
+.payment-badge {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2dcd6;
+  background: #faf9f7;
+}
+
+.payment-logo {
+  width: 4rem;
+  height: 1.15rem;
+  object-fit: contain;
+}
+
+@media (max-width: 380px) {
+  .payment-logo {
+    width: 3.25rem;
+  }
+}
+</style>
