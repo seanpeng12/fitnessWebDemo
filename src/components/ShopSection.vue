@@ -10,7 +10,7 @@
             {{ t('shop.description') }}
           </p>
         </div>
-        <div class="mt-8 flex items-center gap-5 md:mt-0">
+        <div class="mt-8 md:mt-0">
           <label class="relative">
             <span class="sr-only">{{ t('shop.categoryLabel') }}</span>
             <select
@@ -24,13 +24,6 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m6 9 6 6 6-6" />
             </svg>
           </label>
-          <button
-            type="button"
-            class="whitespace-nowrap border-b-2 border-bb-text pb-1 text-sm font-semibold uppercase tracking-widest transition-all hover:border-bb-blue hover:text-bb-blue"
-            @click="selectedProductType = ''"
-          >
-            {{ t('common.viewAll') }}
-          </button>
         </div>
       </div>
       
