@@ -81,8 +81,18 @@
           <router-link to="/#blog" @click="isMobileMenuOpen = false">{{ t('header.story') }}</router-link>
           
           <div class="pt-10 border-t border-[#E8E3DE] flex flex-col space-y-6">
-            <router-link to="/login" @click="isMobileMenuOpen = false" class="mobile-nav-item opacity-0 delay-100 text-xs font-bold tracking-widest">{{ t('header.login') }}</router-link>
-            <a href="#" class="mobile-nav-item opacity-0 delay-200 text-xs font-bold tracking-widest">{{ t('header.join') }}</a>
+            <button
+              v-if="isAuthenticated"
+              type="button"
+              class="mobile-nav-item self-start opacity-0 delay-100 text-xs font-bold tracking-widest"
+              @click="handleLogout"
+            >
+              {{ t('auth.logout') }}
+            </button>
+            <template v-else>
+              <router-link to="/login" @click="isMobileMenuOpen = false" class="mobile-nav-item opacity-0 delay-100 text-xs font-bold tracking-widest">{{ t('header.login') }}</router-link>
+              <router-link to="/login" @click="isMobileMenuOpen = false" class="mobile-nav-item opacity-0 delay-200 text-xs font-bold tracking-widest">{{ t('header.join') }}</router-link>
+            </template>
           </div>
         </nav>
       </div>
@@ -97,11 +107,17 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { setLocale } from '../i18n';
 import { useCart } from '../composables/useCart';
+import { useCustomerAuth } from '../composables/useCustomerAuth';
 
 const isMobileMenuOpen = ref(false);
 const { t, locale } = useI18n();
 const { isOpen, totalQuantity } = useCart();
+const { isAuthenticated, logout } = useCustomerAuth();
 const toggleLocale = () => setLocale(locale.value === 'zh-TW' ? 'en' : 'zh-TW');
+const handleLogout = async () => {
+  isMobileMenuOpen.value = false;
+  try { await logout(); } catch { /* The local session is already cleared. */ }
+};
 </script>
 
 <style scoped>
