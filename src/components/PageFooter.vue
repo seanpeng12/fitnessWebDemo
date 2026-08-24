@@ -31,7 +31,7 @@
             <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.story') }}</a></li>
             <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.cafes') }}</a></li>
             <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.sustainability') }}</a></li>
-            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.help') }}</a></li>
+            <li><router-link to="/faq" class="hover:text-bb-blue transition-colors">{{ t('footer.help') }}</router-link></li>
           </ul>
         </div>
 
@@ -113,7 +113,6 @@
       <div class="border-t border-[#E8E3DE] pt-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.2em] text-gray-400 uppercase font-light">
         <p>{{ t('footer.copyright') }}</p>
         <div class="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 md:mt-0">
-          <router-link to="/shopping-guide" class="hover:text-bb-blue transition-colors">{{ t('footer.guide') }}</router-link>
           <a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.privacy') }}</a>
           <a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.terms') }}</a>
           <a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.accessibility') }}</a>

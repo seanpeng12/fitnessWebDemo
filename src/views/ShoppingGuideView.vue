@@ -9,16 +9,16 @@
         </p>
       </header>
 
-      <div class="space-y-8">
-        <section class="guide-card">
-          <h2 class="guide-title"><span>01</span>{{ t('guide.order.title') }}</h2>
+      <div class="space-y-4">
+        <details class="guide-card">
+          <summary class="guide-title"><span>01</span>{{ t('guide.order.title') }}</summary>
           <ol class="guide-list list-decimal">
             <li v-for="item in tm('guide.order.items')" :key="item">{{ item }}</li>
           </ol>
-        </section>
+        </details>
 
-        <section class="guide-card">
-          <h2 class="guide-title"><span>02</span>{{ t('guide.payment.title') }}</h2>
+        <details class="guide-card">
+          <summary class="guide-title"><span>02</span>{{ t('guide.payment.title') }}</summary>
           <p class="guide-copy">
             {{ t('guide.payment.copy') }}
           </p>
@@ -42,21 +42,21 @@
           <div class="mt-5 border-l-2 border-bb-blue bg-[#EEF5F5] px-5 py-4 text-xs leading-6 text-gray-600">
             {{ t('guide.payment.notice') }}
           </div>
-        </section>
+        </details>
 
-        <section class="guide-card">
-          <h2 class="guide-title"><span>03</span>{{ t('guide.shipping.title') }}</h2>
+        <details class="guide-card">
+          <summary class="guide-title"><span>03</span>{{ t('guide.shipping.title') }}</summary>
           <ul class="guide-list list-disc">
             <li v-for="item in tm('guide.shipping.items')" :key="item">{{ item }}</li>
           </ul>
-        </section>
+        </details>
 
-        <section class="guide-card">
-          <h2 class="guide-title"><span>04</span>{{ t('guide.returns.title') }}</h2>
+        <details class="guide-card">
+          <summary class="guide-title"><span>04</span>{{ t('guide.returns.title') }}</summary>
           <ul class="guide-list list-disc">
             <li v-for="item in tm('guide.returns.items')" :key="item">{{ item }}</li>
           </ul>
-        </section>
+        </details>
 
         <section class="border border-[#D8CEC5] bg-[#2F2925] px-7 py-8 text-white sm:px-10">
           <h2 class="text-sm font-semibold tracking-[0.25em]">{{ t('guide.reminder.title') }}</h2>
@@ -85,11 +85,32 @@ const { t, tm } = useI18n();
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
   color: #5a5450;
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.14em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.guide-title::-webkit-details-marker {
+  display: none;
+}
+
+.guide-title::after {
+  content: '+';
+  margin-left: auto;
+  color: #6b9a9b;
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.guide-card[open] .guide-title {
+  margin-bottom: 1.5rem;
+}
+
+.guide-card[open] .guide-title::after {
+  content: '−';
 }
 
 .guide-title span {

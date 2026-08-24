@@ -21,9 +21,13 @@ const routes = [
     props: true
   },
   {
-    path: '/shopping-guide',
-    name: 'ShoppingGuide',
+    path: '/faq',
+    name: 'Faq',
     component: () => import('../views/ShoppingGuideView.vue')
+  },
+  {
+    path: '/shopping-guide',
+    redirect: '/faq'
   },
   {
     path: '/login',
