@@ -11,10 +11,15 @@
       <div class="max-w-screen-2xl mx-auto flex justify-between items-center lg:grid lg:grid-cols-3">
         
         <!-- Left: Logo (Simple Router Link) -->
-        <div class="flex items-center justify-start">
-          <router-link to="/" class="flex items-center space-x-2 group">
-            <img src="/logo.png" alt="Trinity Coffee Roaster" class="w-6 h-8 object-contain transition-transform group-hover:scale-105">
-            <span class="text-base sm:text-lg font-medium tracking-tighter text-bb-text whitespace-nowrap uppercase">Trinity Coffee Roaster</span>
+        <div class="flex min-w-0 items-center justify-start">
+          <router-link to="/" class="group flex min-w-0 items-center gap-2">
+            <img src="/logo.png" alt="Trinity Coffee Roaster" class="h-8 w-6 flex-none object-contain transition-transform group-hover:scale-105">
+            <span class="flex h-8 flex-col items-start justify-between text-[8px] font-semibold uppercase leading-[9px] tracking-[0.08em] text-bb-text sm:hidden" aria-hidden="true">
+              <span>Trinity</span>
+              <span>Coffee</span>
+              <span>Roaster</span>
+            </span>
+            <span class="hidden whitespace-nowrap text-lg font-medium uppercase tracking-tighter text-bb-text sm:inline">Trinity Coffee Roaster</span>
           </router-link>
         </div>
 
@@ -25,7 +30,7 @@
         </nav>
 
         <!-- Right: Utility Icons -->
-        <div class="flex items-center justify-end space-x-4 sm:space-x-6 text-bb-text">
+        <div class="flex flex-none items-center justify-end space-x-4 text-bb-text sm:space-x-6">
           <router-link to="/login" :aria-label="t('header.login')" class="flex flex-col items-center space-y-1 group">
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"></path></svg>
             <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">{{ t('header.login') }}</span>
