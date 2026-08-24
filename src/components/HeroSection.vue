@@ -6,7 +6,7 @@
     <div class="pointer-events-none absolute right-[7%] top-[18%] hidden h-px w-[36%] bg-[#BEB4AA]/35 lg:block" aria-hidden="true"></div>
     <div class="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-24 lg:py-40 flex flex-col lg:flex-row items-center justify-between">
       <!-- Text Content -->
-      <div class="z-10 mb-12 lg:mb-0 lg:w-1/2">
+      <div class="z-10 lg:mb-0 lg:w-1/2">
         <h1 class="text-4xl md:text-6xl font-light tracking-tight text-bb-text mb-6 leading-tight">
           <!-- Trinity Coffee Roaster <br /> -->
           <span class="font-medium">Trinity Coffee Roaster</span>
@@ -31,7 +31,7 @@
       </div>
 
       <!-- Editorial Hero Image -->
-      <div class="mobile-image-layout relative w-full lg:w-1/2 lg:pl-10">
+      <div class="relative hidden w-full lg:block lg:w-1/2 lg:pl-10">
         <div class="editorial-outline absolute -right-5 -top-5 hidden h-full w-[88%] border border-[#D8D0C8] lg:block"></div>
         <figure class="editorial-frame relative mx-auto w-full max-w-2xl bg-[#EFEAE4] p-3 sm:p-4">
           <div class="editorial-photo relative aspect-[5/4] overflow-hidden bg-[#DDD6CF]">
@@ -50,10 +50,6 @@
             </span>
           </figcaption>
         </figure>
-        <div class="mt-4 flex items-center justify-end gap-3 pr-1 text-[8px] font-medium uppercase tracking-[0.26em] text-[#8D8177] lg:hidden">
-          <span class="h-px w-10 bg-[#AFA399]"></span>
-          <span>{{ t('hero.principles') }}</span>
-        </div>
         <div class="absolute -bottom-4 left-2 hidden h-9 w-9 bg-bb-blue/80 lg:block"></div>
       </div>
     </div>
@@ -88,22 +84,6 @@ const { t } = useI18n();
 }
 
 @media (max-width: 1023px) {
-  .mobile-image-layout {
-    align-self: flex-start;
-    width: 100%;
-    margin-left: -1.5rem;
-  }
-
-  .editorial-frame {
-    background: transparent;
-    clip-path: none;
-    padding: 0;
-  }
-
-  .editorial-photo {
-    clip-path: none;
-  }
-
   .editorial-lines {
     background-image: repeating-linear-gradient(90deg, rgba(126, 111, 98, 0.045) 0, rgba(126, 111, 98, 0.045) 1px, transparent 1px, transparent 72px);
   }
