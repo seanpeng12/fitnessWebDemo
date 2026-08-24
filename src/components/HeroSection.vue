@@ -32,9 +32,9 @@
 
       <!-- Editorial Hero Image -->
       <div class="relative w-full lg:w-1/2 lg:pl-10">
-        <div class="absolute -right-5 -top-5 hidden h-full w-[88%] border border-[#D8D0C8] lg:block"></div>
-        <figure class="relative mx-auto w-full max-w-2xl bg-[#EFEAE4] p-3 sm:p-4">
-          <div class="relative aspect-[5/4] overflow-hidden bg-[#DDD6CF]">
+        <div class="editorial-outline absolute -right-5 -top-5 hidden h-full w-[88%] border border-[#D8D0C8] lg:block"></div>
+        <figure class="editorial-frame relative mx-auto w-full max-w-2xl bg-[#EFEAE4] p-3 sm:p-4">
+          <div class="editorial-photo relative aspect-[5/4] overflow-hidden bg-[#DDD6CF]">
             <img
               src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop"
               :alt="t('hero.imageAlt')"
@@ -68,6 +68,19 @@ const { t } = useI18n();
     repeating-linear-gradient(0deg, rgba(126, 111, 98, 0.04) 0, rgba(126, 111, 98, 0.04) 1px, transparent 1px, transparent 96px);
   -webkit-mask-image: linear-gradient(to right, transparent, black 16%, black 84%, transparent);
   mask-image: linear-gradient(to right, transparent, black 16%, black 84%, transparent);
+}
+
+.editorial-outline {
+  transform: rotate(1.15deg);
+  transform-origin: center;
+}
+
+.editorial-frame {
+  clip-path: polygon(1.2% 0, 98.7% 1.8%, 100% 95.5%, 96.8% 100%, 2% 98.2%, 0 4%);
+}
+
+.editorial-photo {
+  clip-path: polygon(0.8% 0, 100% 1.2%, 98.8% 100%, 0 98%);
 }
 
 @media (max-width: 1023px) {
