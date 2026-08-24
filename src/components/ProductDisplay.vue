@@ -13,11 +13,11 @@
         class="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-110" 
       />
       <div v-else-if="loading" class="animate-pulse bg-gray-200 w-full h-full"></div>
-      <div v-else class="text-gray-400 font-light italic text-[10px]">Product not found</div>
+      <div v-else class="text-gray-400 font-light italic text-[10px]">{{ t('shop.notFound') }}</div>
       
       <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-5 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
         <span class="bg-[#6B9A9B] text-white px-8 py-3 text-[10px] font-bold tracking-widest uppercase shadow-sm hover:bg-[#9D8B7E] transition-colors">
-          View Details
+          {{ t('shop.details') }}
         </span>
       </div>
     </router-link>
@@ -39,7 +39,7 @@
         @click="handleBuyNow" 
         class="mt-auto w-full border-2 border-[#6B9A9B] py-3 text-[10px] font-bold tracking-widest uppercase hover:bg-[#6B9A9B] hover:text-white transition-all text-[#6B9A9B]"
       >
-        Quick Purchase
+        {{ t('shop.quickPurchase') }}
       </button>
     </div>
   </div>
@@ -47,6 +47,7 @@
 
 <script setup>
 import { ref, watch, onMounted, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useShopify } from '../composables/useShopify';
 
 const props = defineProps({
@@ -54,6 +55,7 @@ const props = defineProps({
   productData: { type: Object, default: null },
 });
 const { product, loading, fetchProductByHandle, createCart } = useShopify();
+const { t } = useI18n();
 
 const selectedVariantId = ref(null);
 

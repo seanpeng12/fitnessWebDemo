@@ -25,6 +25,21 @@ const routes = [
     name: 'ShoppingGuide',
     component: () => import('../views/ShoppingGuideView.vue')
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/auth/callback',
+    name: 'AuthCallback',
+    component: () => import('../views/AuthCallbackView.vue')
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: () => import('../views/AccountView.vue')
+  },
   // Catch all undefined paths and redirect to home
   {
     path: '/:pathMatch(.*)*',

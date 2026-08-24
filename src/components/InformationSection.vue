@@ -2,7 +2,7 @@
 <template>
   <section class="py-24 bg-white border-t border-[#E8E3DE]">
     <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
-      <h2 class="text-[10px] font-bold tracking-[0.4em] text-center mb-16 uppercase text-bb-text">INFORMATION</h2>
+      <h2 class="text-[10px] font-bold tracking-[0.4em] text-center mb-16 uppercase text-bb-text">{{ t('information.title') }}</h2>
       
       <div class="max-w-3xl mx-auto space-y-6 mb-16">
         <div v-for="info in infoList" :key="info.title" class="flex items-center py-4 border-b border-[#E8E3DE] cursor-pointer group">
@@ -16,7 +16,7 @@
 
       <div class="text-center">
         <a href="#" class="inline-block bg-bb-blue text-white px-12 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-opacity-90 transition-all">
-          VIEW ALL
+          {{ t('common.viewAll') }}
         </a>
       </div>
     </div>
@@ -24,9 +24,12 @@
 </template>
 
 <script setup>
-const infoList = [
-  { date: '2026.03.18', tag: 'News', title: 'New Signature Blends Now Available Online' },
-  { date: '2026.03.12', tag: 'Cafe', title: 'Grand Opening: Blue Bottle Coffee Shibuya Cafe' },
-  { date: '2026.03.01', tag: 'Event', title: 'Coffee Tasting Workshop Series 2026' }
-];
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
+const infoList = computed(() => [
+  { date: '2026.03.18', tag: t('information.items.newBlend.tag'), title: t('information.items.newBlend.title') },
+  { date: '2026.03.12', tag: t('information.items.cafe.tag'), title: t('information.items.cafe.title') },
+  { date: '2026.03.01', tag: t('information.items.workshop.tag'), title: t('information.items.workshop.title') }
+]);
 </script>

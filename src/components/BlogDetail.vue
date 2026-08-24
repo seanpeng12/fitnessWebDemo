@@ -3,9 +3,9 @@
   <article class="bg-white min-h-screen pb-32">
     <!-- Breadcrumbs -->
     <nav class="max-w-screen-md mx-auto px-6 pt-12 mb-16 text-[10px] tracking-[0.2em] uppercase text-gray-400 font-medium">
-      <router-link to="/" class="hover:text-bb-blue transition-colors">Home</router-link>
+      <router-link to="/" class="hover:text-bb-blue transition-colors">{{ t('blog.home') }}</router-link>
       <span class="mx-3">/</span>
-      <router-link to="/#blog" class="hover:text-bb-blue transition-colors">Blog</router-link>
+      <router-link to="/#blog" class="hover:text-bb-blue transition-colors">{{ t('blog.breadcrumb') }}</router-link>
       <span class="mx-3">/</span>
       <span class="text-bb-text">{{ blogData.title }}</span>
     </nav>
@@ -29,29 +29,29 @@
 
       <div class="prose prose-sm max-w-none text-gray-600 font-light leading-loose space-y-8 uppercase tracking-widest text-[11px]">
         <p>
-          With the arrival of spring, we feel the beginning of a new season. At Blue Bottle Coffee, we offer special experiences that allow you to feel the changing of the seasons.
+          {{ t('blog.paragraph1') }}
         </p>
         <p>
-          In this blog post, we share the unique features of our newly opened cafe, tips to enrich your coffee time at home, and the craftsmanship we value.
+          {{ t('blog.paragraph2') }}
         </p>
         
         <div class="py-12">
           <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800" class="w-full h-auto mb-4" />
-          <p class="text-[9px] text-gray-400 text-center italic tracking-normal">Meticulously roasted beans waiting for the perfect pour.</p>
+          <p class="text-[9px] text-gray-400 text-center italic tracking-normal">{{ t('blog.caption') }}</p>
         </div>
 
         <p>
-          Our coffee is shaped by the passion of everyone involved, from the source to the cafe. We hope a cup of coffee brings small changes and joy to your daily life.
+          {{ t('blog.paragraph3') }}
         </p>
       </div>
 
       <!-- Footer Actions -->
       <footer class="mt-32 pt-12 border-t border-[#E8E3DE] flex justify-between items-center">
         <router-link to="/#blog" class="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 hover:text-bb-blue transition-colors">
-          ← Back to List
+          {{ t('blog.back') }}
         </router-link>
         <div class="flex space-x-6">
-          <a href="#" class="text-gray-400 hover:text-bb-blue"><span class="text-[10px] tracking-widest font-bold">SHARE</span></a>
+          <a href="#" class="text-gray-400 hover:text-bb-blue"><span class="text-[10px] tracking-widest font-bold">{{ t('blog.share') }}</span></a>
         </div>
       </footer>
     </div>
@@ -60,27 +60,32 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({ slug: { type: String, required: true } });
+const { t } = useI18n();
 
 // Mock Blog Database
 const blogs = {
   'kanda-cafe': {
-    title: 'BLUE BOTTLE COFFEE KANDA CAFE',
+    titleKey: 'blog.posts.kanda',
     date: '2026.03.15',
     image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200'
   },
   'spring-edition': {
-    title: 'COFFEE ENJOYMENT AT HOME: SPRING EDITION',
+    titleKey: 'blog.posts.spring',
     date: '2026.03.10',
     image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200'
   },
   'brewing-gear': {
-    title: 'NEW BREWING GEAR: THE PATH TO PERFECTION',
+    titleKey: 'blog.posts.gear',
     date: '2026.03.05',
     image: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1200'
   }
 };
 
-const blogData = computed(() => blogs[props.slug] || blogs['kanda-cafe']);
+const blogData = computed(() => {
+  const post = blogs[props.slug] || blogs['kanda-cafe'];
+  return { ...post, title: t(post.titleKey) };
+});
 </script>

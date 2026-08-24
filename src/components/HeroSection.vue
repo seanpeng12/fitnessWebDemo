@@ -9,20 +9,20 @@
           <span class="font-medium">Trinity Coffee Roaster</span>
         </h1>
         <p class="text-lg md:text-xl text-gray-500 font-light mb-4 max-w-lg leading-relaxed">
-          Three principles. One consistent cup.
+          {{ t('hero.tagline') }}
         </p>
         <p class="text-sm md:text-base tracking-[0.3em] uppercase text-bb-blue font-medium mb-6 max-w-lg">
-          Source · Craft · Consistency
+          {{ t('hero.principles') }}
         </p>
         <p class="text-base md:text-lg text-gray-400 font-light mb-12 max-w-lg leading-relaxed">
-          Small-batch roasted coffee designed for cafés — balanced, reliable and built to perform in every cup.
+          {{ t('hero.description') }}
         </p>
         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
           <router-link :to="{ path: '/', hash: '#shop' }" class="bb-button bg-bb-blue text-white px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
-            Shop Coffee
+            {{ t('hero.shop') }}
           </router-link>
           <a href="#features" class="bb-button border border-bb-text text-bb-text px-10 py-4 text-sm font-semibold tracking-widest uppercase text-center">
-            Learn More
+            {{ t('hero.learnMore') }}
           </a>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <div class="bg-white p-4 shadow-sm">
           <img 
             src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" 
-            alt="Blue Bottle Coffee" 
+            :alt="t('hero.imageAlt')"
             class="w-full h-auto grayscale-[0.2] contrast-[1.1]"
           />
         </div>
@@ -42,3 +42,8 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
+</script>

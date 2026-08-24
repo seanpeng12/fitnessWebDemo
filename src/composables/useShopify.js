@@ -2,6 +2,7 @@
 
 import { ref } from 'vue';
 import { shopifyFetch } from '../lib/shopify';
+import { i18n } from '../i18n';
 
 // --- GraphQL Query Statements ---
 
@@ -142,7 +143,7 @@ export function useShopify() {
     try {
       const response = await shopifyFetch(GET_PRODUCT_BY_HANDLE_QUERY, { handle });
       if (!response.data.product) {
-        throw new Error(`Product with handle "${handle}" not found.`);
+        throw new Error(i18n.global.t('product.notFound', { handle }));
       }
       product.value = response.data.product;
     } catch (e) {

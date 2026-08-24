@@ -3,7 +3,7 @@
   <header class="sticky top-0 z-50 bg-white border-b border-[#E8E3DE]">
     <!-- Top Blue Bar -->
     <div class="bg-[#3A3A3A] text-white text-[9px] tracking-[0.2em] py-2 px-6 text-center font-bold uppercase">
-      A 2026-04-07 VERSION
+      {{ t('header.version') }}
     </div>
     
     <!-- Main Header -->
@@ -20,23 +20,35 @@
 
         <!-- Center: Navigation -->
         <nav class="hidden lg:flex items-center justify-center space-x-12 text-[11px] font-bold tracking-[0.3em] text-bb-text uppercase">
-          <router-link :to="{ path: '/', hash: '#shop' }" class="hover:text-bb-blue transition-colors">SHOP</router-link>
-          <router-link :to="{ path: '/', hash: '#blog' }" class="hover:text-bb-blue transition-colors">OUR STORY</router-link>
+          <router-link :to="{ path: '/', hash: '#shop' }" class="hover:text-bb-blue transition-colors">{{ t('header.shop') }}</router-link>
+          <router-link :to="{ path: '/', hash: '#blog' }" class="hover:text-bb-blue transition-colors">{{ t('header.story') }}</router-link>
         </nav>
 
         <!-- Right: Utility Icons -->
         <div class="flex items-center justify-end space-x-4 sm:space-x-6 text-bb-text">
-          <button class="flex flex-col items-center space-y-1 group">
+          <router-link to="/login" :aria-label="t('header.login')" class="flex flex-col items-center space-y-1 group">
+            <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"></path></svg>
+            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">{{ t('header.login') }}</span>
+          </router-link>
+          <button :aria-label="t('header.search')" class="flex flex-col items-center space-y-1 group">
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">SEARCH</span>
+            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">{{ t('header.search') }}</span>
           </button>
-          <button class="flex flex-col items-center space-y-1 group relative">
+          <button :aria-label="t('header.cart')" class="flex flex-col items-center space-y-1 group relative">
             <svg class="w-5 h-5 group-hover:text-bb-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">CART</span>
+            <span class="hidden xs:block text-[8px] font-bold tracking-widest uppercase">{{ t('header.cart') }}</span>
+          </button>
+
+          <button
+            :aria-label="t('header.language')"
+            class="min-w-10 border border-[#D8CEC5] px-2 py-1 text-[9px] font-bold tracking-wider hover:border-bb-blue hover:text-bb-blue transition-colors"
+            @click="toggleLocale"
+          >
+            {{ locale === 'zh-TW' ? 'EN' : '中文' }}
           </button>
 
           <!-- Mobile Menu Button -->
-          <button @click="isMobileMenuOpen = true" class="lg:hidden p-1 hover:text-bb-blue transition-colors">
+          <button :aria-label="t('header.openMenu')" @click="isMobileMenuOpen = true" class="lg:hidden p-1 hover:text-bb-blue transition-colors">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-16 6h16"></path>
             </svg>
@@ -48,19 +60,19 @@
     <!-- Mobile Menu Panel -->
     <transition name="slide">
       <div v-if="isMobileMenuOpen" class="fixed inset-0 bg-white z-[60] flex flex-col p-8 overflow-y-auto">
-        <button @click="isMobileMenuOpen = false" class="self-end p-2 mb-12 hover:text-bb-blue transition-colors">
+        <button :aria-label="t('header.closeMenu')" @click="isMobileMenuOpen = false" class="self-end p-2 mb-12 hover:text-bb-blue transition-colors">
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
 
         <nav class="flex flex-col space-y-10 text-xl font-light tracking-[0.3em] uppercase">
-          <router-link to="/#shop" @click="isMobileMenuOpen = false">SHOP</router-link>
-          <router-link to="/#blog" @click="isMobileMenuOpen = false">OUR STORY</router-link>
+          <router-link to="/#shop" @click="isMobileMenuOpen = false">{{ t('header.shop') }}</router-link>
+          <router-link to="/#blog" @click="isMobileMenuOpen = false">{{ t('header.story') }}</router-link>
           
           <div class="pt-10 border-t border-[#E8E3DE] flex flex-col space-y-6">
-            <a href="#" class="mobile-nav-item opacity-0 delay-100 text-xs font-bold tracking-widest">LOGIN</a>
-            <a href="#" class="mobile-nav-item opacity-0 delay-200 text-xs font-bold tracking-widest">JOIN US</a>
+            <router-link to="/login" @click="isMobileMenuOpen = false" class="mobile-nav-item opacity-0 delay-100 text-xs font-bold tracking-widest">{{ t('header.login') }}</router-link>
+            <a href="#" class="mobile-nav-item opacity-0 delay-200 text-xs font-bold tracking-widest">{{ t('header.join') }}</a>
           </div>
         </nav>
       </div>
@@ -72,7 +84,12 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { setLocale } from '../i18n';
+
 const isMobileMenuOpen = ref(false);
+const { t, locale } = useI18n();
+const toggleLocale = () => setLocale(locale.value === 'zh-TW' ? 'en' : 'zh-TW');
 </script>
 
 <style scoped>

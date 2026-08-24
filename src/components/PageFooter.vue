@@ -10,34 +10,34 @@
             <span class="text-lg font-medium tracking-tighter text-bb-text">Trinity Coffee Roaster LTD.</span>
           </div>
           <p class="text-xs text-gray-400 leading-relaxed max-w-xs uppercase tracking-widest font-light">
-            Bringing you the finest coffee, roasted to perfection and delivered fresh.
+            {{ t('footer.description') }}
           </p>
         </div>
 
         <!-- Links 1 -->
         <div>
-          <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">Shop</h4>
+          <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.shop') }}</h4>
           <ul class="space-y-4 text-[11px] font-light tracking-widest uppercase text-gray-500">
-            <li><a href="#" class="hover:text-bb-blue transition-colors">Coffee Beans</a></li>
-            <li><a href="#" class="hover:text-bb-blue transition-colors">Brewing Gear</a></li>
-            <li><a href="#" class="hover:text-bb-blue transition-colors">Subscriptions</a></li>
+            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.coffeeBeans') }}</a></li>
+            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.brewingGear') }}</a></li>
+            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.subscriptions') }}</a></li>
           </ul>
         </div>
 
         <!-- Links 2 -->
         <div>
-          <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">Explore</h4>
+          <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.explore') }}</h4>
           <ul class="space-y-4 text-[11px] font-light tracking-widest uppercase text-gray-500">
-            <li><a href="#" class="hover:text-bb-blue transition-colors">Our Story</a></li>
-            <li><a href="#" class="hover:text-bb-blue transition-colors">Cafes</a></li>
-            <li><a href="#" class="hover:text-bb-blue transition-colors">Sustainability</a></li>
-            <li><a href="#" class="hover:text-bb-blue transition-colors">Help</a></li>
+            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.story') }}</a></li>
+            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.cafes') }}</a></li>
+            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.sustainability') }}</a></li>
+            <li><a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.help') }}</a></li>
           </ul>
         </div>
 
         <!-- Social -->
         <div>
-          <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">Connect</h4>
+          <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.connect') }}</h4>
           <div class="flex space-x-4 text-gray-400">
             <a href="#" class="hover:text-bb-blue" title="Twitter">
               <div class="w-5 h-5 bg-currentColor" style="-webkit-mask-image: url(/svg/twitter.svg); mask-image: url(/svg/twitter.svg); -webkit-mask-size: contain; mask-size: contain;"></div>
@@ -49,7 +49,7 @@
         </div>
 
         <div>
-          <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">Payments</h4>
+          <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-bb-text mb-6">{{ t('footer.payments') }}</h4>
           <ul class="space-y-4">
             <li>
               <a href="#" class="inline-flex transition-opacity hover:opacity-80" title="Visa">
@@ -77,14 +77,19 @@
 
       <!-- Bottom -->
       <div class="border-t border-[#E8E3DE] pt-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.2em] text-gray-400 uppercase font-light">
-        <p>© 2026 奧多伴有限公司. 版權所有.</p>
+        <p>{{ t('footer.copyright') }}</p>
         <div class="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 md:mt-0">
-          <router-link to="/shopping-guide" class="hover:text-bb-blue transition-colors">購物須知</router-link>
-          <a href="#" class="hover:text-bb-blue transition-colors">隱私權政策</a>
-          <a href="#" class="hover:text-bb-blue transition-colors">服務條款</a>
-          <a href="#" class="hover:text-bb-blue transition-colors">無障礙聲明</a>
+          <router-link to="/shopping-guide" class="hover:text-bb-blue transition-colors">{{ t('footer.guide') }}</router-link>
+          <a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.privacy') }}</a>
+          <a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.terms') }}</a>
+          <a href="#" class="hover:text-bb-blue transition-colors">{{ t('footer.accessibility') }}</a>
         </div>
       </div>
     </div>
   </footer>
 </template>
+
+<script setup>
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
+</script>
