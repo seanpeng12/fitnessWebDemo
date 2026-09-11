@@ -26,6 +26,12 @@ const routes = [
     component: () => import('../views/StoryView.vue')
   },
   {
+    path: '/newProduct',
+    name: 'NewProduct',
+    component: () => import('../views/NewProductView.vue'),
+    meta: { standalone: true }
+  },
+  {
     path: '/faq',
     name: 'Faq',
     component: () => import('../views/ShoppingGuideView.vue')

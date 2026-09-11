@@ -1,20 +1,23 @@
 <!-- src/App.vue -->
 <template>
   <div class="bg-white text-bb-text font-sans">
-    <PageHeader />
+    <PageHeader v-if="!route.meta.standalone" />
     <main>
       <!-- Remove transition, render content directly via router-view -->
       <router-view></router-view>
     </main>
-    <PageFooter />
+    <PageFooter v-if="!route.meta.standalone" />
     <CartDrawer />
   </div>
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
 import PageHeader from './components/PageHeader.vue';
 import PageFooter from './components/PageFooter.vue';
 import CartDrawer from './components/CartDrawer.vue';
+
+const route = useRoute();
 </script>
 
 <style>
