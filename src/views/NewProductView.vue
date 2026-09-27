@@ -35,7 +35,7 @@
       <section id="product" class="product-section">
         <div class="product-gallery">
           <div v-if="shopLoading" class="product-placeholder">{{ copy.loading }}</div>
-          <img v-else-if="heroImage" :src="heroImage.url" :alt="heroImage.altText || mainProduct?.title" />
+          <img v-else-if="heroImage" :src="heroImage.url" :alt="locale === 'en' ? displayedMainTitle : (heroImage.altText || displayedMainTitle)" />
           <img v-else src="/logo.png" alt="Trinity Coffee Roaster" class="fallback-logo" />
           <div v-if="productImages.length > 1" class="gallery-dots">
             <button v-for="(_, index) in productImages" :key="index" :class="{ active: galleryIndex === index }" @click="galleryIndex = index" />
@@ -60,7 +60,7 @@
             </div>
           </div>
 
-          <h1>{{ mainProduct?.title || copy.fallbackTitle }}</h1>
+          <h1>{{ displayedMainTitle }}</h1>
           <div class="rating"><span>★★★★★</span><a href="#reviews">{{ copy.reviewCount }}</a></div>
           <p class="lead">{{ copy.intro }}</p>
 
@@ -147,7 +147,7 @@
         <div class="product-cards">
           <router-link v-for="item in relatedProducts" :key="item.id" :to="`/products/${item.handle}`" class="product-card">
             <div><img v-if="item.images.edges[0]" :src="item.images.edges[0].node.url" :alt="item.images.edges[0].node.altText || item.title" /></div>
-            <small>{{ item.productType || copy.coffee }}</small><h3>{{ item.title }}</h3><b>{{ formatMoney(item.variants.edges[0]?.node.price) }}</b>
+            <small>{{ item.productType || copy.coffee }}</small><h3>{{ localizedProductTitle(item) }}</h3><b>{{ formatMoney(item.variants.edges[0]?.node.price) }}</b>
           </router-link>
         </div>
       </section>
@@ -183,7 +183,7 @@ const text = {
     menu:'選單', search:'搜尋', cart:'購物車', product:'商品選購', originStory:'產地故事', brew:'沖煮指南', related:'你可能也喜歡', coffee:'咖啡', filterCoffee:'精品咖啡', loading:'正在讀取 Shopify 商品…', size:'容量', grind:'研磨方式', beans:'原豆', ground:'研磨', fallbackTitle:'衣索比亞 Limú 單品咖啡', reviewCount:'1599 則顧客評論', intro:'這款咖啡來自衣索比亞西部 Limú 高地。它帶著柔和果香、可可甜感與乾淨尾韻，是每天都喝不膩的平衡風味。', oneTime:'單次購買', subscribe:'定期訂購・省更多', soon:'即將推出', add:'加入購物車', soldOut:'暫時售罄', delivery:'滿 NT$1,500 享免運，實際運費與到貨時間以 Shopify 結帳頁為準。', glance:'咖啡風味一覽', taste:'風味', tasteValue:'均衡、葡萄、黑巧克力', roast:'烘焙程度', medium:'中焙', strength:'醇厚度', balanced:'均衡', acidity:'酸質', gentle:'柔和', origin:'產地', ethiopia:'衣索比亞', species:'品種', processing:'處理法', washed:'水洗', different:'我們有什麼不同？', directCopy:'小批次烘焙、持續杯測，讓每一批風味都清楚而穩定。', shipping:'配送資訊', reliableTitle:'每天都值得信賴的咖啡', reliableCopy:'像一位熟悉的朋友，Limú 有著平順、微甜又帶巧克力氣息的個性。不論手沖或咖啡機，都能輕鬆得到舒服、耐喝的一杯。', prepTitle:'沖煮建議', prepCopy:'手沖、法式濾壓或美式咖啡機都很適合。單喝能感受乾淨果香，加入少量牛奶則會帶出更圓潤的可可甜感。', forestTitle:'來自衣索比亞森林花園的咖啡', forestCopy:'Limú 生長在海拔超過 2,000 公尺的林蔭咖啡園。天然植被與緩慢熟成的果實，造就細緻香氣與明亮、舒服的酸質。', quote:'無論怎麼沖，Limú 都是一款可靠、毫不費力，每天都令人期待的咖啡。', partnerTitle:'攜手產地，讓好咖啡持續發生', partnerCopy:'我們相信長期合作比一次交易更有價值。透過透明採購與品質回饋，支持產地改善處理設備，也讓農民能因優良品質獲得更好的報酬。', coopCopy:'Kenissa 合作社位於衣索比亞西南方 Limú 地區，約 300 個家庭在森林樹蔭下以友善方式種植咖啡。我們透過長期合作，一起改善處理與品質。', location:'地點', altitude:'海拔', farmers:'農戶', harvest:'採收期', varieties:'品種', roastedTitle:'每天新鮮、溫柔烘焙', roastedCopy:'精準曲線與小批次杯測，讓每一款豆子的產地個性被完整保留。每一批都經過香氣、甜感與尾韻的品質檢查。', moreRoastery:'了解我們的烘豆方式', easy:'簡單沖出好咖啡', pourOver:'手沖配方', brewCopy:'這款咖啡適合多種器材。以下提供平衡、甜感清楚的基礎配方，你可以依喜好微調研磨與水溫。', weight:'咖啡粉', grindLabel:'研磨', water:'注水量', temp:'水溫', duration:'時間', special:'我們的三個堅持', direct:'直接與產地建立長期合作', fresh:'每日新鮮、小批次烘焙', invest:'以實際行動回饋咖啡產地', bigReviewCount:'1417 則顧客評論', reviewTitle1:'平衡又順口', reviewBody1:'香氣清楚，放涼後仍然甜，日常手沖非常穩定。', reviewTitle2:'溫柔而有層次', reviewBody2:'酸質很舒服，可可尾韻讓整杯非常耐喝。', questions:'需要協助嗎？', payment:'訂單與付款', returns:'退換貨說明', mission:'我們的使命', missionCopy:'用穩定烘焙與長期產地合作，讓一杯好咖啡同時照顧風味、土地與人的生活。', footerCopy:'源頭、工藝、穩定——把值得信賴的咖啡帶進每一天。', roastingAlt:'新鮮烘焙的咖啡豆', roasteryAlt:'Trinity 烘豆工作空間', originAlt:'咖啡農在林蔭咖啡園採收果實', roastAlt:'小批次咖啡烘焙'
   },
   en: {
-    menu:'Menu', search:'Search', cart:'Cart', product:'Product', originStory:'Origin story', brew:'Brew guide', related:'You may also like', coffee:'Coffee', filterCoffee:'Specialty Coffee', loading:'Loading Shopify products…', size:'Size', grind:'Grind size', beans:'Whole beans', ground:'Ground', fallbackTitle:'Ethiopia Limú Single Origin', reviewCount:'1599 customer reviews', intro:'Grown in the highlands of western Ethiopia, this coffee is balanced and clean with soft fruit, cocoa sweetness, and a lingering finish.', oneTime:'One-time purchase', subscribe:'Subscribe & save', soon:'Coming soon', add:'Add to cart', soldOut:'Sold out', delivery:'Free shipping over NT$1,500. Final rates and delivery times are shown at Shopify checkout.', glance:'Coffee at a glance', taste:'Taste', tasteValue:'Balanced, grape, dark chocolate', roast:'Roast degree', medium:'Medium', strength:'Strength', balanced:'Balanced', acidity:'Acidity', gentle:'Gentle', origin:'Origin', ethiopia:'Ethiopia', species:'Species', processing:'Processing', washed:'Washed', different:'What are we doing differently?', directCopy:'Small-batch roasting and continual cupping keep every lot clear and consistent.', shipping:'Shipping', reliableTitle:'A reliable all-rounder for every day', reliableCopy:'Like a good friend, Limú is smooth, gently fruity and subtly chocolatey. Whether brewed by hand or machine, it makes an easy, comforting cup.', prepTitle:'Tips for preparation', prepCopy:'Use a pour over, French press, or filter machine. Enjoy it black for its clean fruit character, or add a little milk to bring forward rounded cocoa sweetness.', forestTitle:'Coffee from the forest gardens of Ethiopia', forestCopy:'Limú grows in shaded forest gardens above 2,000 metres. Natural vegetation and slowly ripening cherries create fine aromatics and a bright, pleasant acidity.', quote:'However you brew it, Limú is a reliable, uncomplicated coffee that delights every day.', partnerTitle:'Working together for better coffee', partnerCopy:'We believe long-term relationships matter more than a single transaction. Transparent sourcing and quality feedback help improve processing and reward farmers for excellent coffee.', coopCopy:'The Kenissa Cooperative is located in the Limú region of southwestern Ethiopia. Around 300 families grow coffee sustainably beneath forest shade, improving quality together over the long term.', location:'Location', altitude:'Altitude', farmers:'Farmers', harvest:'Harvest', varieties:'Varieties', roastedTitle:'Freshly and gently roasted every day', roastedCopy:'Precise profiles and small-batch cupping preserve the character of each origin. Every lot is checked for aroma, sweetness, and finish.', moreRoastery:'More about our roastery', easy:'Preparation made easy', pourOver:'Pour over', brewCopy:'This coffee works beautifully across brewing methods. Start with this balanced, sweet recipe, then adjust grind and temperature to taste.', weight:'Weight', grindLabel:'Grind', water:'Water', temp:'Temperature', duration:'Duration', special:'What makes us special?', direct:'Long-term, direct origin partnerships', fresh:'Freshly roasted in small batches', invest:'Meaningful investment in coffee regions', bigReviewCount:'1417 customer reviews', reviewTitle1:'Balanced and smooth', reviewBody1:'Clear aroma, sweet as it cools, and very dependable for daily pour over.', reviewTitle2:'Gentle and layered', reviewBody2:'Pleasant acidity and a cocoa finish make this exceptionally easy to drink.', questions:'Do you have questions?', payment:'Order & payment', returns:'Returns', mission:'This is our mission', missionCopy:'Through consistent roasting and lasting origin partnerships, we make coffee better for flavour, land, and livelihoods.', footerCopy:'Source, craft, consistency — dependable coffee for every day.', roastingAlt:'Freshly roasted coffee beans', roasteryAlt:'Trinity coffee roastery', originAlt:'Coffee farmer harvesting cherries in a shaded coffee garden', roastAlt:'Small-batch coffee roasting'
+    menu:'Menu', search:'Search', cart:'Cart', product:'Product', originStory:'Origin story', brew:'Brew guide', related:'You may also like', coffee:'Coffee', filterCoffee:'Specialty Coffee', loading:'Loading Shopify products…', size:'Size', grind:'Grind size', beans:'Whole beans', ground:'Ground', fallbackTitle:'Classic Balance Blend Coffee Beans', reviewCount:'1599 customer reviews', intro:'Grown in the highlands of western Ethiopia, this coffee is balanced and clean with soft fruit, cocoa sweetness, and a lingering finish.', oneTime:'One-time purchase', subscribe:'Subscribe & save', soon:'Coming soon', add:'Add to cart', soldOut:'Sold out', delivery:'Free shipping over NT$1,500. Final rates and delivery times are shown at Shopify checkout.', glance:'Coffee at a glance', taste:'Taste', tasteValue:'Balanced, grape, dark chocolate', roast:'Roast degree', medium:'Medium', strength:'Strength', balanced:'Balanced', acidity:'Acidity', gentle:'Gentle', origin:'Origin', ethiopia:'Ethiopia', species:'Species', processing:'Processing', washed:'Washed', different:'What are we doing differently?', directCopy:'Small-batch roasting and continual cupping keep every lot clear and consistent.', shipping:'Shipping', reliableTitle:'A reliable all-rounder for every day', reliableCopy:'Like a good friend, Limú is smooth, gently fruity and subtly chocolatey. Whether brewed by hand or machine, it makes an easy, comforting cup.', prepTitle:'Tips for preparation', prepCopy:'Use a pour over, French press, or filter machine. Enjoy it black for its clean fruit character, or add a little milk to bring forward rounded cocoa sweetness.', forestTitle:'Coffee from the forest gardens of Ethiopia', forestCopy:'Limú grows in shaded forest gardens above 2,000 metres. Natural vegetation and slowly ripening cherries create fine aromatics and a bright, pleasant acidity.', quote:'However you brew it, Limú is a reliable, uncomplicated coffee that delights every day.', partnerTitle:'Working together for better coffee', partnerCopy:'We believe long-term relationships matter more than a single transaction. Transparent sourcing and quality feedback help improve processing and reward farmers for excellent coffee.', coopCopy:'The Kenissa Cooperative is located in the Limú region of southwestern Ethiopia. Around 300 families grow coffee sustainably beneath forest shade, improving quality together over the long term.', location:'Location', altitude:'Altitude', farmers:'Farmers', harvest:'Harvest', varieties:'Varieties', roastedTitle:'Freshly and gently roasted every day', roastedCopy:'Precise profiles and small-batch cupping preserve the character of each origin. Every lot is checked for aroma, sweetness, and finish.', moreRoastery:'More about our roastery', easy:'Preparation made easy', pourOver:'Pour over', brewCopy:'This coffee works beautifully across brewing methods. Start with this balanced, sweet recipe, then adjust grind and temperature to taste.', weight:'Weight', grindLabel:'Grind', water:'Water', temp:'Temperature', duration:'Duration', special:'What makes us special?', direct:'Long-term, direct origin partnerships', fresh:'Freshly roasted in small batches', invest:'Meaningful investment in coffee regions', bigReviewCount:'1417 customer reviews', reviewTitle1:'Balanced and smooth', reviewBody1:'Clear aroma, sweet as it cools, and very dependable for daily pour over.', reviewTitle2:'Gentle and layered', reviewBody2:'Pleasant acidity and a cocoa finish make this exceptionally easy to drink.', questions:'Do you have questions?', payment:'Order & payment', returns:'Returns', mission:'This is our mission', missionCopy:'Through consistent roasting and lasting origin partnerships, we make coffee better for flavour, land, and livelihoods.', footerCopy:'Source, craft, consistency — dependable coffee for every day.', roastingAlt:'Freshly roasted coffee beans', roasteryAlt:'Trinity coffee roastery', originAlt:'Coffee farmer harvesting cherries in a shaded coffee garden', roastAlt:'Small-batch coffee roasting'
   }
 }
 
@@ -203,6 +203,13 @@ const productImages = computed(() => mainProduct.value?.images?.edges.map(({ nod
 const heroImage = computed(() => productImages.value[galleryIndex.value] || productImages.value[0])
 const relatedProducts = computed(() => products.value.slice(1, 5))
 const formattedPrice = computed(() => formatMoney(selectedVariant.value?.price))
+const displayedMainTitle = computed(() => localizedProductTitle(mainProduct.value, copy.value.fallbackTitle))
+
+const englishTitleFallbacks = {
+  '經典平衡綜合咖啡豆': 'Classic Balance Blend Coffee Beans',
+  '單品濾掛咖啡（深林綠）': 'Single-Origin Drip Coffee — Forest Green',
+  '單品濾掛咖啡（深海藍）': 'Single-Origin Drip Coffee — Deep Sea Blue',
+}
 
 watch(mainProduct, () => { selectedVariantId.value = variants.value[0]?.id || ''; galleryIndex.value = 0 })
 watch(locale, () => fetchAllProducts())
@@ -210,6 +217,20 @@ watch(locale, () => fetchAllProducts())
 function formatMoney(price) {
   if (!price) return '—'
   return new Intl.NumberFormat(locale.value === 'zh-TW' ? 'zh-TW' : 'en-US', { style:'currency', currency:price.currencyCode, maximumFractionDigits:0 }).format(Number(price.amount))
+}
+function localizedProductTitle(item, fallback = 'Trinity Specialty Coffee') {
+  const title = item?.title?.trim()
+  if (!title) return fallback
+  if (locale.value !== 'en' || !/[\u3400-\u9fff]/u.test(title)) return title
+  if (englishTitleFallbacks[title]) return englishTitleFallbacks[title]
+
+  const readableHandle = item?.handle
+    ?.split('-')
+    .filter((part) => /^[a-z0-9]+$/i.test(part))
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ')
+
+  return readableHandle || fallback
 }
 function toggleLocale() { setLocale(locale.value === 'zh-TW' ? 'en' : 'zh-TW') }
 function scrollTo(id) { menuOpen.value = false; document.getElementById(id)?.scrollIntoView({ behavior:'smooth' }) }
