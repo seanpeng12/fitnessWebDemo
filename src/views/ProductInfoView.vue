@@ -351,8 +351,8 @@ async function generateLink() {
     const safeBase = originalBase.normalize('NFKD').replace(/[^a-zA-Z0-9_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 55) || 'product'
     const filename = `${Date.now().toString(36)}-${randomPart}-${safeBase}.jpg`
     const path = `${cleanFolder(github.folder)}/${filename}`
-    const upload = await uploadToGitHub(path, imageBase64)
-    const imageUrl = rawGitHubUrl(path, upload.commit?.sha || github.branch)
+    await uploadToGitHub(path, imageBase64)
+    const imageUrl = githubImageUrl(path)
     const item = {
       image: imageUrl,
       name: selectedFile.value.name,
@@ -466,9 +466,9 @@ async function uploadToGitHub(path, content) {
   return parseGitHubResponse(response)
 }
 
-function rawGitHubUrl(path, revision) {
+function githubImageUrl(path) {
   const encodedPath = path.split('/').map(encodeURIComponent).join('/')
-  return `https://raw.githubusercontent.com/${encodeURIComponent(github.owner)}/${encodeURIComponent(github.repo)}/${encodeURIComponent(revision)}/${encodedPath}`
+  return `https://github.com/${encodeURIComponent(github.owner)}/${encodeURIComponent(github.repo)}/blob/${encodeURIComponent(github.branch)}/${encodedPath}?raw=true`
 }
 
 async function parseGitHubResponse(response) {
@@ -531,7 +531,11 @@ onMounted(() => {
   if (source) {
     try {
       const sourceUrl = new URL(source)
-      if (sourceUrl.protocol !== 'https:' || sourceUrl.hostname !== 'raw.githubusercontent.com') throw new Error()
+      const isLegacyRawUrl = sourceUrl.hostname === 'raw.githubusercontent.com'
+      const isGitHubRawView = sourceUrl.hostname === 'github.com'
+        && sourceUrl.pathname.includes('/blob/')
+        && sourceUrl.searchParams.get('raw') === 'true'
+      if (sourceUrl.protocol !== 'https:' || (!isLegacyRawUrl && !isGitHubRawView)) throw new Error()
       remoteSource.value = sourceUrl.href
       savedItem.value = {
         image: sourceUrl.href,
