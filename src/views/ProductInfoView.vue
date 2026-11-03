@@ -4,8 +4,8 @@
       <div class="hero-orb hero-orb-one" />
       <div class="hero-orb hero-orb-two" />
       <div class="hero-inner">
-        <p class="eyebrow">PRODUCT IMAGE LINK</p>
-        <h1>{{ savedItem ? '商品圖片已建立' : '上傳圖片，立即分享' }}</h1>
+        <p class="eyebrow">IMAGE TO QR CODE</p>
+        <h1>img2qrcode</h1>
         <p class="hero-copy">
           {{ savedItem ? '掃描 QR Code 或複製連結，即可回到這張商品圖片。' : '選擇一張商品照片，我們會建立目前網域下的專屬網址與 QR Code。' }}
         </p>
@@ -172,6 +172,7 @@ import QRCode from 'qrcode'
 
 const STORAGE_PREFIX = 'trinity-product-info:'
 const CONFIG_STORAGE_KEY = 'trinity-product-info:github-config'
+const PAGE_TITLE = 'img2qrcode | Trinity Coffee Roaster'
 const MAX_FILE_SIZE = 10 * 1024 * 1024
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 
@@ -508,6 +509,7 @@ async function createAnother() {
 }
 
 onMounted(() => {
+  document.title = PAGE_TITLE
   try {
     const storedConfig = localStorage.getItem(CONFIG_STORAGE_KEY)
     if (storedConfig) {
@@ -549,7 +551,10 @@ onMounted(() => {
   }
 })
 
-onBeforeUnmount(revokePreview)
+onBeforeUnmount(() => {
+  revokePreview()
+  document.title = 'Trinity Coffee Roaster 官方網站'
+})
 </script>
 
 <style scoped>
