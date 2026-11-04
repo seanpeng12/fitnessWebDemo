@@ -138,7 +138,7 @@
             <span class="share-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M8.5 15.5l7-7m-5.5-2l1.2-1.2a4 4 0 015.6 5.6L15.5 12m-7 0L7.2 13.3a4 4 0 005.6 5.6l1.2-1.2" /></svg>
             </span>
-            <div><p>SHARE LINK</p><h2>分享圖片頁面</h2></div>
+            <div><p>SHARE LINK</p><h2>分享圖片連結</h2></div>
           </div>
 
           <div class="url-field">
@@ -208,21 +208,12 @@ const configReady = computed(() => Boolean(
 ))
 
 const shareUrl = computed(() => {
-  let query
-  if (remoteSource.value && savedItem.value) {
-    query = {
-      src: remoteSource.value,
-      name: savedItem.value.name,
-      ts: savedItem.value.createdAt,
-      repo: savedItem.value.repository,
-    }
-  } else if (itemId.value) {
-    query = { id: itemId.value }
-  } else {
-    return ''
+  if (remoteSource.value) return remoteSource.value
+  if (itemId.value) {
+    const routeUrl = router.resolve({ name: 'ProductInfo', query: { id: itemId.value } }).href
+    return new URL(routeUrl, window.location.href).href
   }
-  const routeUrl = router.resolve({ name: 'ProductInfo', query }).href
-  return new URL(routeUrl, window.location.href).href
+  return ''
 })
 
 const formattedDate = computed(() => {
@@ -515,6 +506,58 @@ async function createAnother() {
   await router.replace({ name: 'ProductInfo' })
 }
 
+function syncFromRoute() {
+  missingItem.value = false
+  const source = typeof route.query.src === 'string' ? route.query.src : ''
+  if (source) {
+    try {
+      const sourceUrl = new URL(source)
+      const isLegacyRawUrl = sourceUrl.hostname === 'raw.githubusercontent.com'
+      const isGitHubRawView = sourceUrl.hostname === 'github.com'
+        && sourceUrl.pathname.includes('/blob/')
+        && sourceUrl.searchParams.get('raw') === 'true'
+      if (sourceUrl.protocol !== 'https:' || (!isLegacyRawUrl && !isGitHubRawView)) throw new Error()
+      itemId.value = ''
+      remoteSource.value = sourceUrl.href
+      savedItem.value = {
+        image: sourceUrl.href,
+        name: typeof route.query.name === 'string' ? route.query.name : '商品圖片',
+        createdAt: typeof route.query.ts === 'string' ? route.query.ts : '',
+        repository: typeof route.query.repo === 'string' ? route.query.repo : '',
+      }
+      return
+    } catch {
+      savedItem.value = null
+      remoteSource.value = ''
+      missingItem.value = true
+      return
+    }
+  }
+
+  const id = typeof route.query.id === 'string' ? route.query.id : ''
+  if (!id) {
+    savedItem.value = null
+    itemId.value = ''
+    remoteSource.value = ''
+    return
+  }
+  remoteSource.value = ''
+  itemId.value = id
+  try {
+    const stored = localStorage.getItem(`${STORAGE_PREFIX}${id}`)
+    if (stored) savedItem.value = JSON.parse(stored)
+    else {
+      savedItem.value = null
+      missingItem.value = true
+    }
+  } catch {
+    savedItem.value = null
+    missingItem.value = true
+  }
+}
+
+watch(() => route.query, syncFromRoute)
+
 onMounted(() => {
   document.title = PAGE_TITLE
   try {
@@ -527,39 +570,7 @@ onMounted(() => {
     localStorage.removeItem(CONFIG_STORAGE_KEY)
   }
 
-  const source = typeof route.query.src === 'string' ? route.query.src : ''
-  if (source) {
-    try {
-      const sourceUrl = new URL(source)
-      const isLegacyRawUrl = sourceUrl.hostname === 'raw.githubusercontent.com'
-      const isGitHubRawView = sourceUrl.hostname === 'github.com'
-        && sourceUrl.pathname.includes('/blob/')
-        && sourceUrl.searchParams.get('raw') === 'true'
-      if (sourceUrl.protocol !== 'https:' || (!isLegacyRawUrl && !isGitHubRawView)) throw new Error()
-      remoteSource.value = sourceUrl.href
-      savedItem.value = {
-        image: sourceUrl.href,
-        name: typeof route.query.name === 'string' ? route.query.name : '商品圖片',
-        createdAt: typeof route.query.ts === 'string' ? route.query.ts : '',
-        repository: typeof route.query.repo === 'string' ? route.query.repo : '',
-      }
-      return
-    } catch {
-      missingItem.value = true
-      return
-    }
-  }
-
-  const id = typeof route.query.id === 'string' ? route.query.id : ''
-  if (!id) return
-  itemId.value = id
-  try {
-    const stored = localStorage.getItem(`${STORAGE_PREFIX}${id}`)
-    if (stored) savedItem.value = JSON.parse(stored)
-    else missingItem.value = true
-  } catch {
-    missingItem.value = true
-  }
+  syncFromRoute()
 })
 
 onBeforeUnmount(() => {
