@@ -10,9 +10,16 @@ const GET_PRODUCT_BY_HANDLE_QUERY = `
   query getProductByHandle($handle: String!, $language: LanguageCode!) @inContext(language: $language) {
     product(handle: $handle) {
       id
+      handle
       title
+      vendor
+      productType
       descriptionHtml
-      images(first: 5) {
+      options {
+        name
+        values
+      }
+      images(first: 20) {
         edges {
           node {
             url
@@ -20,13 +27,22 @@ const GET_PRODUCT_BY_HANDLE_QUERY = `
           }
         }
       }
-      variants(first: 10) {
+      variants(first: 100) {
         edges {
           node {
             id
             title
             availableForSale
+            sku
+            selectedOptions {
+              name
+              value
+            }
             price {
+              amount
+              currencyCode
+            }
+            compareAtPrice {
               amount
               currencyCode
             }
@@ -51,9 +67,14 @@ const GET_PRODUCTS_QUERY = `
         id
         handle
         title
+        vendor
         productType
         descriptionHtml
-        images(first: 5) {
+        options {
+          name
+          values
+        }
+        images(first: 20) {
           edges {
             node {
               url
@@ -61,13 +82,22 @@ const GET_PRODUCTS_QUERY = `
             }
           }
         }
-        variants(first: 10) {
+        variants(first: 100) {
           edges {
             node {
               id
               title
               availableForSale
+              sku
+              selectedOptions {
+                name
+                value
+              }
               price {
+                amount
+                currencyCode
+              }
+              compareAtPrice {
                 amount
                 currencyCode
               }
