@@ -112,6 +112,11 @@
         <article><span>⟳</span><small>{{ copy.processing }}</small><b>{{ copy.washed }}</b></article>
       </section>
 
+      <section id="brew" class="brew-section">
+        <div class="brew-heading"><small>{{ copy.easy }}</small><h2>THIS IS<br />HOW WE<br />BREW IT</h2></div>
+        <div class="brew-copy"><h3>{{ copy.pourOver }}</h3><p>{{ copy.brewCopy }}</p><dl><dt>{{ copy.weight }}</dt><dd>32 g</dd><dt>{{ copy.grindLabel }}</dt><dd>{{ copy.medium }}</dd><dt>{{ copy.water }}</dt><dd>500 ml</dd><dt>{{ copy.temp }}</dt><dd>96 °C</dd><dt>{{ copy.duration }}</dt><dd>3–4 min</dd></dl></div>
+      </section>
+
       <section class="story-block two-column">
         <div class="story-copy"><h2>{{ copy.reliableTitle }}</h2><p>{{ copy.reliableCopy }}</p></div>
         <img src="/images/story/roasting-beans.jpg" :alt="copy.roastingAlt" />
@@ -140,11 +145,6 @@
       <section class="roasting-section two-column">
         <div><h2>{{ copy.roastedTitle }}</h2><p>{{ copy.roastedCopy }}</p><router-link to="/story">{{ copy.moreRoastery }} →</router-link></div>
         <img src="/images/story/roastery-machine.jpg" :alt="copy.roasteryAlt" />
-      </section>
-
-      <section id="brew" class="brew-section">
-        <div class="brew-heading"><small>{{ copy.easy }}</small><h2>THIS IS<br />HOW WE<br />BREW IT</h2></div>
-        <div class="brew-copy"><h3>{{ copy.pourOver }}</h3><p>{{ copy.brewCopy }}</p><dl><dt>{{ copy.weight }}</dt><dd>32 g</dd><dt>{{ copy.grindLabel }}</dt><dd>{{ copy.medium }}</dd><dt>{{ copy.water }}</dt><dd>500 ml</dd><dt>{{ copy.temp }}</dt><dd>96 °C</dd><dt>{{ copy.duration }}</dt><dd>3–4 min</dd></dl></div>
       </section>
 
       <section id="related" class="related-section">
