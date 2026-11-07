@@ -127,7 +127,6 @@ export function useShopify() {
   const product = ref(null);
   const products = ref([]);
   const productTypes = ref([]);
-  const contentLanguage = ref(null);
   const loading = ref(false);
   const error = ref(null);
   let productsRequestId = 0;
@@ -140,7 +139,6 @@ export function useShopify() {
     error.value = null;
     products.value = [];
     productTypes.value = [];
-    contentLanguage.value = null;
 
     try {
       let after = null;
@@ -161,7 +159,6 @@ export function useShopify() {
           if (requestId !== productsRequestId) return;
         }
         const page = response.data.products;
-        contentLanguage.value = response.data.localization.language.isoCode;
 
         if (productTypes.value.length === 0) {
           productTypes.value = response.data.productTypes.nodes.filter(Boolean);
@@ -208,7 +205,6 @@ export function useShopify() {
     product,
     products,
     productTypes,
-    contentLanguage,
     loading,
     error,
     fetchAllProducts,
