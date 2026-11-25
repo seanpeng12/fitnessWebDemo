@@ -23,6 +23,7 @@
         <button @click="scrollTo('product')">{{ copy.product }}</button>
         <button @click="scrollTo('story')">{{ copy.description }}</button>
         <button v-if="brewGuideHtml" @click="scrollTo('brew')">{{ copy.brew }}</button>
+        <button @click="scrollTo('reviews')">{{ copy.reviewsTitle }}</button>
         <button @click="scrollTo('related')">{{ copy.related }}</button>
       </nav>
     </transition>
@@ -59,6 +60,7 @@
           </div>
 
           <h1>{{ displayedMainTitle }}</h1>
+          <button class="review-jump" @click="scrollTo('reviews')">{{ copy.reviewsTitle }} ↓</button>
 
           <div class="purchase-types">
             <label><input checked type="radio" name="purchase" /><span>{{ copy.oneTime }}</span></label>
@@ -103,6 +105,15 @@
         </div>
       </section>
 
+      <section id="reviews" class="reviews-section">
+        <h2>{{ copy.reviewsTitle }}</h2>
+        <p class="reviews-note">{{ copy.reviewsNote }}</p>
+        <div class="reviews-grid">
+          <article><h3>{{ copy.reviewTitle1 }}</h3><div>★★★★★</div><p>{{ copy.reviewBody1 }}</p><b>Yu-Ting</b></article>
+          <article><h3>{{ copy.reviewTitle2 }}</h3><div>★★★★★</div><p>{{ copy.reviewBody2 }}</p><b>Wei-Lun</b></article>
+        </div>
+      </section>
+
       <section id="brew" v-if="brewGuideHtml" class="brew-section">
         <div class="brew-heading"><small>{{ copy.brew }}</small><h2>THIS IS<br />HOW WE<br />BREW IT</h2></div>
         <div class="brew-copy" v-html="brewGuideHtml" />
@@ -130,15 +141,6 @@
       <section class="special-section">
         <h2>{{ copy.special }}</h2>
         <div><span>✿</span><p>{{ copy.direct }}</p></div><div><span>♨</span><p>{{ copy.fresh }}</p></div><div><span>♡</span><p>{{ copy.invest }}</p></div>
-      </section>
-
-      <section id="reviews" class="reviews-section">
-        <h2>{{ copy.reviewsTitle }}</h2>
-        <p class="reviews-note">{{ copy.reviewsNote }}</p>
-        <div class="reviews-grid">
-          <article><h3>{{ copy.reviewTitle1 }}</h3><div>★★★★★</div><p>{{ copy.reviewBody1 }}</p><b>Yu-Ting</b></article>
-          <article><h3>{{ copy.reviewTitle2 }}</h3><div>★★★★★</div><p>{{ copy.reviewBody2 }}</p><b>Wei-Lun</b></article>
-        </div>
       </section>
 
     </main>
@@ -287,5 +289,6 @@ onMounted(() => { fetchAllProducts(); loadCart() })
 .product-story{background:#f3f5ee}.product-story .story-copy{max-width:720px}.product-story .story-copy>small{display:block;margin-bottom:14px;color:var(--green);font-weight:800;letter-spacing:.1em}.product-story>img{width:100%;height:100%;min-height:520px;object-fit:contain;padding:8%;background:var(--sage)}.product-story-body:deep(p){margin:0 0 16px}.product-story-body:deep(h2),.product-story-body:deep(h3){margin:28px 0 12px}.product-story-body:deep(ul),.product-story-body:deep(ol){padding-left:1.4em}.product-story-body:deep(img){max-width:100%;height:auto}
 .brew-copy:deep(h2),.brew-copy:deep(h3){color:#fff;font-size:30px}.brew-copy:deep(p){margin:16px 0}.brew-copy:deep(ol),.brew-copy:deep(ul){padding-left:1.4em}.brew-copy:deep(li){margin:9px 0}
 .reviews-note{margin:0 auto;color:#5d6660;font-size:14px}
+.review-jump{margin:0 0 22px;padding:0;border:0;background:none;color:var(--blue);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}.reviews-section{scroll-margin-top:72px}
 @media(max-width:800px){.np-page{font-size:15px}.np-header{height:58px;display:flex;padding:0 10px}.np-header .icon-button,.lang-button{width:36px;height:36px;flex:none}.np-brand{position:absolute;left:50%;transform:translateX(-50%)}.lang-button{position:absolute;right:47px}.cart-button{position:absolute;right:9px}.np-brand img{width:18px;height:27px}.np-brand span{font-size:8px}.np-menu{inset:58px 0 auto;display:grid;gap:15px;text-align:left}.breadcrumb{padding:11px 16px}.product-section{display:block}.product-gallery{position:relative;top:auto;height:368px;min-height:0}.product-gallery>img:not(.fallback-logo){width:76%;height:78%}.gallery-dots{bottom:14px}.purchase-panel{padding:25px 15px 35px}.purchase-panel h1{font-size:35px;margin-top:25px}.lead{font-size:16px}.specs dl{grid-template-columns:105px 1fr}.icon-grid{grid-template-columns:1fr 1fr;padding:45px 20px;gap:40px 20px}.two-column,.origin-section,.cooperative,.brew-section{display:flex;flex-direction:column}.story-copy,.origin-copy,.roasting-section>div,.cooperative>div:first-child,.coop-card{padding:45px 15px}.story-block>img,.roasting-section>img,.origin-section>img,.cooperative>img{min-height:0;height:390px}.reverse .story-copy{order:0}.origin-section blockquote{padding:40px 20px}.coop-card{grid-column:auto}.brew-section{padding:50px 15px}.brew-heading h2{font-size:55px}.brew-copy dl{grid-template-columns:1fr 1fr}.related-section,.reviews-section{padding:50px 15px}.product-cards{grid-auto-columns:78%}.product-card>div{height:300px}.reviews-grid{grid-template-columns:1fr}.np-footer{grid-template-columns:1fr;padding:50px 20px}.np-search{display:none}}
 </style>
